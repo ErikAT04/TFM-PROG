@@ -3,6 +3,7 @@ module com.example.tfmjava {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.sql;
 
     opens com.example.tfmjava to javafx.fxml;
     exports com.example.tfmjava;
