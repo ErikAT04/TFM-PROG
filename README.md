@@ -9,3 +9,9 @@
   </ul>
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando.
 </p>
+  <p style="text-align: center;">Progreso actual del proyecto:
+    
+  ![](https://geps.dev/progress/0)
+  </p>
+</center>
+
