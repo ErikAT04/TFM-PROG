@@ -3,6 +3,7 @@
   Este proyecto ha sido llevado a cabo entre dos estudiantes, juntando todos los conocimientos adquiridos en el primer curso de Desarrollo de Aplicaciones Multiplataforma.<br>
   Abarca muchos contenidos dados, como:
   <ul>
+    <li>Uso de estructuras de control y atributos y métodos estáticos, públicos y privados de Java</li>
     <li>Uso de interfaces Visuales con JavaFX</li>
     <li>Uso de operaciones CRUD con datos (Programación Orientada a Objetos)</li>
     <li>Manipulación de Datos en una base de datos (JDBC, utilizando MySQL Server)</li>
