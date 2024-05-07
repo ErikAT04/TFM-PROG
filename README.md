@@ -12,7 +12,6 @@
 </p>
   <p style="text-align: center;">Progreso actual del proyecto:
     
-  ![](https://geps.dev/progress/0)
+  ![](https://geps.dev/progress/5)
   </p>
-</center>
 
