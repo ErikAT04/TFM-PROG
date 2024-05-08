@@ -24,7 +24,8 @@
     <li>La segunda se encarga de lo que es la base de datos principal, guardando información de clientes, tratamientos, etcétera</li>
   </ul>
 </ol>
-<center><img src=""></center>
+<img src="presentacion/BBDD.png" style="width: 40%;">
+
 
 ### 2. Clases normales
 <ol>
