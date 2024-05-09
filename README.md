@@ -10,9 +10,11 @@
   </ul>
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando.
 </p>
-  <p style="text-align: center;">Progreso actual del proyecto:
+  <p style="text-align: center;">Progreso actual del proyecto:<br>
+    10/31 clases completadas<br>
+    /6 escenas hechas
     
-  ![](https://geps.dev/progress/5)
+  ![](https://geps.dev/progress/10)
   </p>
 
 ## Progreso
@@ -24,18 +26,27 @@
     <li>La segunda se encarga de lo que es la base de datos principal, guardando información de clientes, tratamientos, etcétera</li>
   </ul>
 </ol>
-<center><img src=""></center>
+<img src="presentacion/BBDD.png" style="width=40%">
 
 ### 2. Clases normales
 <ol>
   <li>He empezado creando las clases principales, con sus atributos y sus métodos constructor, getter y setter (Erik, 07/05/2024)</li>
+  <li>Luego, he empezado por el que va a tener el Login: la clase Usuario y con ello su clase de acceso de datos (DAO) (Erik, 09/05/2024)</li>
 </ol>
 
 ### 3. Diseños FXML
+<ol>
+   <li></li>
+</ol>
 
 ### 4. Clases DAO
+<ol>
+   <li>Empecé con la clase DAO de Usuario, añadiendo los métodos de registro, borrado y un check para ver si el usuario a introducir existe.</li>
+</ol>
 
 ### 5. Controladores
-
+<ol>
+   <li></li>
+</ol>
 
 ## Cambios y Arreglos

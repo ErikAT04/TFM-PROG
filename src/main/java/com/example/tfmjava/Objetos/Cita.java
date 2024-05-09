@@ -63,4 +63,12 @@ public class Cita {
     public void setClientePedido(Cliente clientePedido) {
         this.clientePedido = clientePedido;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cita cita = (Cita) o;
+        return getCod_cita() == cita.getCod_cita();
+    }
 }

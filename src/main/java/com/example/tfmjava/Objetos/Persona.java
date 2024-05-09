@@ -1,5 +1,7 @@
 package com.example.tfmjava.Objetos;
 
+import java.util.Objects;
+
 public abstract class Persona {
     protected String dni;
     protected String nombre;
@@ -33,5 +35,13 @@ public abstract class Persona {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(getDni(), persona.getDni());
     }
 }

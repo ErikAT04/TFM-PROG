@@ -2,6 +2,7 @@ package com.example.tfmjava.Objetos;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Tratamiento {
     private int cod_trat;
@@ -79,5 +80,13 @@ public class Tratamiento {
             }
         }
         return false; //No se puede borrar algo que no existe
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tratamiento that = (Tratamiento) o;
+        return getCod_trat() == that.getCod_trat();
     }
 }
