@@ -23,6 +23,9 @@ public class LogSignUp {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("LogInSignUp/LogInOpt.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        LogInOpt controller = fxmlLoader.getController();
+        Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
+        controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");
         stage.setScene(scene);
         stage.showAndWait();
@@ -33,6 +36,9 @@ public class LogSignUp {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("LogInSignUp/SignUpOpt.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        SignUpOpt controller = fxmlLoader.getController();
+        Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
+        controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");
         stage.setScene(scene);
         stage.showAndWait();

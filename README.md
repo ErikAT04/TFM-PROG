@@ -14,7 +14,7 @@
     10/31 clases completadas<br>
     /6 escenas hechas
     
-  ![](https://geps.dev/progress/15)
+  ![](https://geps.dev/progress/18)
   </p>
 
 ## Progreso
@@ -32,11 +32,12 @@
 <ol>
   <li>He empezado creando las clases principales, con sus atributos y sus métodos constructor, getter y setter (Erik, 07/05/2024)</li>
   <li>Luego, he empezado por el que va a tener el Login: la clase Usuario y con ello su clase de acceso de datos (DAO) (Erik, 09/05/2024)</li>
+  <li>Login terminado totalmente (Erik, 12/05/2024)</li>
 </ol>
 
 ### 3. Diseños FXML
 <ol>
-   <li></li>
+   <li>He terminado el diseño principal de todo lo que es el login</li>
 </ol>
 
 ### 4. Clases DAO
@@ -48,6 +49,7 @@
 ### 5. Controladores
 <ol>
    <li>He comenzado a meter algunas funciones en el controlador del login/signup principal, además de terminar de preparar el sign up (Erik, 12/05/2024)</li>
+   <li>He logrado terminar todo el sistema del login con mucha paciencia (Erik, 12/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos
