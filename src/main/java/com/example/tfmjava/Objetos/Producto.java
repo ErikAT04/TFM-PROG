@@ -15,6 +15,12 @@ public class Producto {
         this.marca = marca;
     }
 
+    public Producto(int stock, String nombre, String marca) {
+        this.stock = stock;
+        this.nombre = nombre;
+        this.marca = marca;
+    }
+
     public int getCod_prod() {
         return cod_prod;
     }

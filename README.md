@@ -8,13 +8,13 @@
     <li>Uso de operaciones CRUD con datos (Programación Orientada a Objetos)</li>
     <li>Manipulación de Datos en una base de datos (JDBC, utilizando MySQL Server)</li>
   </ul>
-  Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando.
+  Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando
 </p>
   <p style="text-align: center;">Progreso actual del proyecto:<br>
     10/31 clases completadas<br>
     /6 escenas hechas
     
-  ![](https://geps.dev/progress/10)
+  ![](https://geps.dev/progress/15)
   </p>
 
 ## Progreso
@@ -41,12 +41,24 @@
 
 ### 4. Clases DAO
 <ol>
-   <li>Empecé con la clase DAO de Usuario, añadiendo los métodos de registro, borrado y un check para ver si el usuario a introducir existe.</li>
+   <li>Empecé con la clase DAO de Usuario, añadiendo los métodos de registro, borrado y un check para ver si el usuario a introducir existe. (Erik, 07/05/2024)</li>
+   <li>Tras luchar con muchos intentos fallidos y usuarios creados de forma aleatoria, el registro funciona perfectamente (Erik, 12/05/2024)</li>
 </ol>
 
 ### 5. Controladores
 <ol>
-   <li></li>
+   <li>He comenzado a meter algunas funciones en el controlador del login/signup principal, además de terminar de preparar el sign up (Erik, 12/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos
+
+
+<!--
+DIARIO DE CAGADAS DE ERIK:
+1. EL REGISTER NO FUNCA PORQUE PATATAS
+   Solucionado (gracias a dios) haciendo que la conexión no vaya ligada directamente a una base de datos
+2. EL REGISTER AHORA DA PROBLEMAS AL INTENTAR HACER LA BASE DE DATOS AAAAAAAAAA
+   Solucionado cambiando de una sentencia preparada a una sentencia normal
+3. EL REGISTER AHORA DA PROBLEMAS AL INTENTAR DAR PERMISOS
+   SOY PUTO LELO Y NO ME FIJE EN QUE ESTABA USANDO OTRO STATEMENT DIFERENTE
+-->

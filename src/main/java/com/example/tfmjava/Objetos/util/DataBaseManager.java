@@ -6,10 +6,11 @@ public class DataBaseManager{
     public static String username;
     public static String password;
     public static String path = "jdbc:mysql://localhost:3306/";
-    public static String extra;
+    public static String dbName;
+
     public static Connection getConnection(){
         Connection con = null;
-        String url = path+extra+"db";
+        String url = path+dbName;
         try {
             con = DriverManager.getConnection(username, password, url);
         }catch (SQLException e){

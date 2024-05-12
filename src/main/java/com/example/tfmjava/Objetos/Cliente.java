@@ -3,10 +3,10 @@ package com.example.tfmjava.Objetos;
 import java.util.Date;
 
 public class Cliente extends Persona {
-    int telf;
-    int edad;
-    Date fnac;
-    String especificaciones;
+    private int telf;
+    private int edad;
+    private Date fnac;
+    private String especificaciones;
     public Cliente(String dni, String nombre, String apellidos, int telf, int edad, Date fnac, String especificaciones) {
         super(dni, nombre, apellidos);
         this.telf = telf;

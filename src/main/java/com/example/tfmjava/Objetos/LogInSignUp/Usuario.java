@@ -13,6 +13,10 @@ public class Usuario {
         this.db = db;
         this.id = id;
     }
+    public Usuario(String uname, String passwd){
+        this.uname = uname;
+        this.passwd = passwd;
+    }
 
     public String getUname() {
         return uname;

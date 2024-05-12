@@ -1,5 +1,8 @@
 package com.example.tfmjava.Objetos.LogInSignUp;
 
+import com.example.tfmjava.Escenas.LogInSignUp.LogInOpt;
+import com.example.tfmjava.Escenas.LogInSignUp.LogSignUp;
+import com.example.tfmjava.Objetos.util.DataBaseManager;
 import com.example.tfmjava.Objetos.util.Resultado;
 
 import java.sql.*;
@@ -17,25 +20,86 @@ public class UsuarioDAO {
         }
         return con;
     }
+    public static Connection conectarSignUp(){
+        Connection con=null;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=IESRibera23");
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return con;
+    }
     public static int register(Usuario usuario){
-        String sqlInsert = "INSERT INTO USUARIO(ID, UNAME, PASSWD, DB) VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO USUARIO(UNAME, PASSWD) VALUES (?, ?)";
         int numFilas;
         try{
             Connection con = conectarLogin();
 
             PreparedStatement sentencia = con.prepareStatement(sqlInsert);
-            sentencia.setInt(1, usuario.getId());
-            sentencia.setString(2, usuario.getUname());
-            sentencia.setString(3, usuario.getPasswd());
-            sentencia.setString(4, usuario.getDb());
+            sentencia.setString(1, usuario.getUname());
+            sentencia.setString(2, usuario.getPasswd());
 
             numFilas = sentencia.executeUpdate();
 
+            //Ahora, voy a sacar el nombre de la base de datos como el nombre de usuario y el ID
+            if (numFilas==1) {
+                String sqlQuery = "SELECT ID FROM USUARIO WHERE UNAME = ?";
+                sentencia = con.prepareStatement(sqlQuery);
+                sentencia.setString(1, usuario.getUname());
+
+                ResultSet resultado = sentencia.executeQuery();
+
+                if (resultado.next()){
+                    int id = resultado.getInt("id");
+                    String dbName = usuario.getUname() + id;
+
+                    String sqlUpdate = "UPDATE USUARIO SET DB=? WHERE ID=?";
+
+                    sentencia = con.prepareStatement(sqlUpdate);
+                    sentencia.setString(1, dbName);
+                    sentencia.setInt(2, id);
+
+                    numFilas = sentencia.executeUpdate();
+                    create_Database(dbName, usuario.getUname(), usuario.getPasswd());
+                }   else {
+                    numFilas = -1; //Por si lo que falla es el select, tenerlo localizado
+                }
+            }
+
             con.close();
         }catch (SQLException e){
+            System.out.println("RROR");
             return 0;
         }
         return numFilas;
+    }
+    public static void create_Database(String dbName, String uname, String passwd){
+        String sqlCreateUser = "CREATE USER ?@'%' IDENTIFIED BY ?;";
+        String sqlCreateDatabase = "CREATE DATABASE " + dbName;
+        String sqlGrant = "GRANT ALL PRIVILEGES ON " +dbName + ".* TO " + uname +";";
+
+        try {
+            Connection con = conectarSignUp();
+
+            PreparedStatement sentencia = con.prepareStatement(sqlCreateUser);
+            sentencia.setString(1, uname);
+            sentencia.setString(2, passwd);
+
+            sentencia.executeUpdate();
+            Statement sentenciaNormal = con.createStatement();
+            sentenciaNormal.executeUpdate(sqlCreateDatabase);
+
+            sentenciaNormal = con.createStatement();
+            sentenciaNormal.executeUpdate(sqlGrant);
+
+            con.close();
+            DataBaseManager.password = passwd;
+            DataBaseManager.username = uname;
+            DataBaseManager.dbName = dbName;
+        }catch (SQLException e){
+            System.out.println("Error");
+        }
+
     }
     public static Usuario checkForLogin(String uname, String passwd){
         Usuario usuario = null;
@@ -66,14 +130,14 @@ public class UsuarioDAO {
         String sqlDeleteUser = "DROP USER " + usuario.getUname();
 
         try {
-            Connection con = conectarLogin();
+            Connection con = conectarSignUp();
             PreparedStatement sentencia = con.prepareStatement(sqlDeleteDB);
+            con = conectarLogin();
             sentencia.executeUpdate();
             sentencia = con.prepareStatement(sqlDeleteUser);
             sentencia.executeUpdate();
             con.close();
         }catch (SQLException e){
-
         }
     }
 }
