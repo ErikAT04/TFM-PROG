@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.tfmjava.Escenas.MainScene"
-            prefHeight="400.0" prefWidth="600.0">
+
+<AnchorPane prefHeight="400.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MainScene">
+   <children>
+      <Label fx:id="welcomeLabel" layoutX="19.0" layoutY="34.0" text="Te damos la bienvenida," textAlignment="CENTER">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="106.0" layoutY="126.0" text="Elija qué quiere gestionar" />
+      <Button fx:id="clientesBtt" layoutX="124.0" layoutY="165.0" mnemonicParsing="false" onAction="#onClientesAction" prefHeight="26.0" prefWidth="94.0" text="Clientes" />
+      <Button fx:id="trabajadoresBtt" layoutX="124.0" layoutY="204.0" mnemonicParsing="false" onAction="#onTrabajadoresAction" prefHeight="26.0" prefWidth="94.0" text="Trabajadores" />
+      <Button fx:id="citasBtt" layoutX="125.0" layoutY="243.0" mnemonicParsing="false" onAction="#onCitasAction" prefHeight="26.0" prefWidth="94.0" text="Citas" />
+      <Button fx:id="productosBtt" layoutX="124.0" layoutY="281.0" mnemonicParsing="false" onAction="#onProductosAction" prefHeight="26.0" prefWidth="94.0" text="Productos" />
+      <Button fx:id="tratamientosBtt" layoutX="125.0" layoutY="319.0" mnemonicParsing="false" onAction="#onTratamientosAction" prefHeight="26.0" prefWidth="94.0" text="Tratamientos" />
+      <Button layoutX="126.0" layoutY="357.0" mnemonicParsing="false" onAction="#onOthersAction" text="Otros ajustes..." />
+   </children>
 </AnchorPane>

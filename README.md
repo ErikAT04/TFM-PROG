@@ -14,7 +14,7 @@
     10/31 clases completadas<br>
     /6 escenas hechas
     
-  ![](https://geps.dev/progress/18)
+  ![](https://geps.dev/progress/20)
   </p>
 
 ## Progreso
@@ -37,7 +37,8 @@
 
 ### 3. Diseños FXML
 <ol>
-   <li>He terminado el diseño principal de todo lo que es el login</li>
+   <li>He terminado el diseño principal de todo lo que es el login (Erik, 11/05/2024)</li>
+   <li>He hecho rápidamente el menú principal, para ir probando más adelante (Erik, 14/05/2024)</li>
 </ol>
 
 ### 4. Clases DAO
@@ -50,6 +51,7 @@
 <ol>
    <li>He comenzado a meter algunas funciones en el controlador del login/signup principal, además de terminar de preparar el sign up (Erik, 12/05/2024)</li>
    <li>He logrado terminar todo el sistema del login con mucha paciencia (Erik, 12/05/2024)</li>
+   <li>En un principio, controlador del inicio completado (Erik, 14/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos

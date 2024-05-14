@@ -30,7 +30,6 @@ public class LogSignUp {
         stage.setScene(scene);
         stage.showAndWait();
     }
-
     @FXML
     void onRegisterClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();
