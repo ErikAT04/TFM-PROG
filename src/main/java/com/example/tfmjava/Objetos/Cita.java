@@ -6,14 +6,24 @@ public class Cita {
     private int cod_cita;
     private LocalDate fecha_hora;
     private String observaciones;
-    private Tratamiento tratamiento;
-    private Trabajador trabajadorEncargado;
-    private Cliente clientePedido;
+    private String dniCliente;
+    private int cod_trabajador;
+    private int cod_tratamiento;
 
-    public Cita(int cod_cita, LocalDate fecha_hora, String observaciones) {
+    public Cita(int cod_cita, LocalDate fecha_hora, String observaciones, int cod_trabajador, int cod_tratamiento, String dniCliente) {
         this.cod_cita = cod_cita;
         this.fecha_hora = fecha_hora;
         this.observaciones = observaciones;
+        this.cod_trabajador = cod_trabajador;
+        this.cod_tratamiento = cod_tratamiento;
+        this.dniCliente = dniCliente;
+    }
+    public Cita(LocalDate fecha_hora, String observaciones, int cod_trabajador, int cod_tratamiento, String dniCliente) {
+        this.fecha_hora = fecha_hora;
+        this.observaciones = observaciones;
+        this.cod_trabajador = cod_trabajador;
+        this.cod_tratamiento = cod_tratamiento;
+        this.dniCliente = dniCliente;
     }
 
     public int getCod_cita() {
@@ -40,28 +50,28 @@ public class Cita {
         this.observaciones = observaciones;
     }
 
-    public Tratamiento getTratamiento() {
-        return tratamiento;
+    public String getDniCliente() {
+        return dniCliente;
     }
 
-    public void setTratamiento(Tratamiento tratamiento) {
-        this.tratamiento = tratamiento;
+    public void setDniCliente(String dniCliente) {
+        this.dniCliente = dniCliente;
     }
 
-    public Trabajador getTrabajadorEncargado() {
-        return trabajadorEncargado;
+    public int getCod_trabajador() {
+        return cod_trabajador;
     }
 
-    public void setTrabajadorEncargado(Trabajador trabajadorEncargado) {
-        this.trabajadorEncargado = trabajadorEncargado;
+    public void setCod_trabajador(int cod_trabajador) {
+        this.cod_trabajador = cod_trabajador;
     }
 
-    public Cliente getClientePedido() {
-        return clientePedido;
+    public int getCod_tratamiento() {
+        return cod_tratamiento;
     }
 
-    public void setClientePedido(Cliente clientePedido) {
-        this.clientePedido = clientePedido;
+    public void setCod_tratamiento(int cod_tratamiento) {
+        this.cod_tratamiento = cod_tratamiento;
     }
 
     @Override

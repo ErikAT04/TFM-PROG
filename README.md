@@ -11,10 +11,10 @@
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando
 </p>
   <p style="text-align: center;">Progreso actual del proyecto:<br>
-    10/31 clases completadas<br>
-    /6 escenas hechas
+    14/31 clases completadas<br>
+    6/12 escenas hechas
     
-  ![](https://geps.dev/progress/20)
+  ![](https://geps.dev/progress/25)
   </p>
 
 ## Progreso
@@ -39,13 +39,16 @@
 <ol>
    <li>He terminado el diseño principal de todo lo que es el login (Erik, 11/05/2024)</li>
    <li>He hecho rápidamente el menú principal, para ir probando más adelante (Erik, 14/05/2024)</li>
+   <li>He hecho el diseño inicial de los archivos FXML principales, añadiendo tablas con sus respectivas columnas (Iván, 15/05/2024)</li>
 </ol>
 
 ### 4. Clases DAO
 <ol>
    <li>Empecé con la clase DAO de Usuario, añadiendo los métodos de registro, borrado y un check para ver si el usuario a introducir existe. (Erik, 07/05/2024)</li>
    <li>Tras luchar con muchos intentos fallidos y usuarios creados de forma aleatoria, el registro funciona perfectamente (Erik, 12/05/2024)</li>
-   <li>Siguiendo el tema DAO, he logrado automatizar la lectura del archivo SQL con un Scanner</li>
+   <li>Siguiendo el tema DAO, he logrado automatizar la lectura del archivo SQL con un Scanner (Erik, 15/05/2024)</li>
+   <li>He comenzado a trabajar en las clases DAO del resto de clases (Iván, 15/05/2024)</li>
+   <li>He terminado de culminar el usuario, pudiendo cambiar su nombre y contraseña (Erik, 15/05/2024)</li>
 </ol>
 
 ### 5. Controladores
@@ -53,10 +56,13 @@
    <li>He comenzado a meter algunas funciones en el controlador del login/signup principal, además de terminar de preparar el sign up (Erik, 12/05/2024)</li>
    <li>He logrado terminar todo el sistema del login con mucha paciencia (Erik, 12/05/2024)</li>
    <li>En un principio, controlador del inicio completado (Erik, 14/05/2024)</li>
+   <li>Controlador de ajustes prácticamente completado, faltan pulir 4 cosas (Erik, 15/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos
-
+<ul>
+    <li>He tenido que cambiar los Statement Preparados de la creación del usuario al registrarse porque daban fallos, así que me he asegurado de que sea impenetrable (Erik, 13/05/2024)</li>
+</ul>
 
 <!--
 DIARIO DE CAGADAS DE ERIK:
