@@ -18,6 +18,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainOptionMenu {
@@ -90,9 +91,59 @@ public class MainOptionMenu {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido))){
             ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
             ArrayList<Producto> productos = ProductoDAO.listarProductos();
-            ArrayList<Trabajador> trabajadors = TrabajadorDAO.listarTrabajadores();
+            ArrayList<Trabajador> trabajadores = TrabajadorDAO.listarTrabajadores();
             ArrayList<Tratamiento> tratamientos = TratamientoDAO.listarTratamientos();
-            ArrayList<Cita> citas = CitaDAO.listarCitas();
+            String str;
+            str = "Base de datos de " + DataBaseManager.username + ", " + LocalDate.now();
+            writer.write(str);
+
+            writer.newLine();
+            writer.newLine(); //Dos saltos de línea
+
+            writer.write("Trabajadores: ");
+            writer.newLine();
+            for (Trabajador t : trabajadores){
+                writer.write(t.toString());
+                writer.newLine();
+            }
+            writer.newLine();
+
+            writer.write("Clientes: ");
+            writer.newLine();
+            for (Cliente c : clientes){
+                writer.write(c.toString());
+                writer.newLine();
+            }
+            writer.newLine();
+
+            writer.write("Productos: ");
+            writer.newLine();
+            for (Producto p : productos){
+                writer.write(p.toString());
+                writer.newLine();
+            }
+            writer.newLine();
+
+            writer.write("Tratamientos: ");
+            writer.newLine();
+            for (Tratamiento t : tratamientos){
+                writer.write(t.toString());
+                writer.newLine();
+            }
+            writer.newLine();
+
+            writer.write("Trabajadores: ");
+            writer.newLine();
+            for (Trabajador t : trabajadores){
+                writer.write(t.toString());
+                writer.newLine();
+            }
+            writer.newLine();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Archivo Guardado");
+            alert.setContentText("Archivo guardado correctamente");
+            alert.setHeaderText(null);
+            alert.showAndWait();
         }catch (IOException e){
             System.out.println(e.getMessage());
         }

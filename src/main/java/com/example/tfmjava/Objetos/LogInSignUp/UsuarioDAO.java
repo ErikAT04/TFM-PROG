@@ -153,4 +153,26 @@ public class UsuarioDAO {
         }
         return numFilas;
     }
+    public static int updateUserName(String old_uname, String new_uname){
+        int numFilas=0;
+        String sql = "RENAME USER " + old_uname + " TO " + new_uname;
+        try(Connection con = conectarSignUp()){
+            Statement sentencia = con.createStatement();
+            numFilas = sentencia.executeUpdate(sql);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return numFilas;
+    }
+    public static int updatePasswd(Usuario usuario){
+        int numFilas=0;
+        String sql = "ALTER USER " + usuario.getUname() + "@'%' IDENTIFIED BY " + usuario.getPasswd();
+        try(Connection con = conectarSignUp()){
+            Statement sentencia = con.createStatement();
+            numFilas = sentencia.executeUpdate(sql);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return numFilas;
+    }
 }
