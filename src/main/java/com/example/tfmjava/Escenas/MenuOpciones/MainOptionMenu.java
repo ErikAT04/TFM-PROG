@@ -1,6 +1,8 @@
 package com.example.tfmjava.Escenas.MenuOpciones;
 
 import com.example.tfmjava.InitApplication;
+import com.example.tfmjava.Objetos.*;
+import com.example.tfmjava.Objetos.DAO.*;
 import com.example.tfmjava.Objetos.util.DataBaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +11,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainOptionMenu {
     Stage previousStage;
@@ -58,16 +65,37 @@ public class MainOptionMenu {
         }
     }
     @FXML
-    void onPassChangeClick(ActionEvent event) {
-
+    void onPassChangeClick(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.setTitle("Cambio de nombre de usuario");
+        stage.showAndWait();
     }
     @FXML
-    void onUnameChangeClick(ActionEvent event) {
-
+    void onUnameChangeClick(ActionEvent event) throws IOException{
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.setTitle("Cambio de nombre de usuario");
+        stage.showAndWait();
     }
     @FXML
     void onPrintDB(ActionEvent event) {
 
+        DirectoryChooser exploradorDeArchivos = new DirectoryChooser();
+        File archivoElegido =exploradorDeArchivos.showDialog(currentStage); //Abro el explorador de archivos y le pido que elija dónde guardar el archivo a generar
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido))){
+            ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
+            ArrayList<Producto> productos = ProductoDAO.listarProductos();
+            ArrayList<Trabajador> trabajadors = TrabajadorDAO.listarTrabajadores();
+            ArrayList<Tratamiento> tratamientos = TratamientoDAO.listarTratamientos();
+            ArrayList<Cita> citas = CitaDAO.listarCitas();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
 

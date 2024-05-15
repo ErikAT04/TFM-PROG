@@ -1,9 +1,6 @@
 package com.example.tfmjava.Objetos.LogInSignUp;
 
-import com.example.tfmjava.Escenas.LogInSignUp.LogInOpt;
-import com.example.tfmjava.Escenas.LogInSignUp.LogSignUp;
 import com.example.tfmjava.Objetos.util.DataBaseManager;
-import com.example.tfmjava.Objetos.util.Resultado;
 
 import java.sql.*;
 
@@ -101,7 +98,7 @@ public class UsuarioDAO {
         }
 
     }
-    public static Usuario checkForLogin(String uname){
+    public static Usuario userForLogin(String uname){
         Usuario usuario = null;
         String sqlQuery = "SELECT * FROM USUARIO WHERE UNAME = ?";
 
@@ -140,5 +137,20 @@ public class UsuarioDAO {
             con.close();
         }catch (SQLException e){
         }
+    }
+
+    public static int updateUser(Usuario usuario) {
+        int numFilas = 0;
+        String sql = "UPDATE USUARIO SET UNAME = ?, PASSWD = ? WHERE ID = ?";
+        try(Connection con = conectarSignUp()){
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setString(1, usuario.getUname());
+            sentencia.setString(2, usuario.getPasswd());
+            sentencia.setInt(3, usuario.getId());
+            numFilas = sentencia.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return numFilas;
     }
 }

@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class LogInOpt {
@@ -40,7 +39,7 @@ public class LogInOpt {
         } else {
             String uname = unameRegister.getText();
             String passwd = passRegister.getText();
-            Usuario u2 = UsuarioDAO.checkForLogin(uname);
+            Usuario u2 = UsuarioDAO.userForLogin(uname);
             if (u2==null || !passwd.equals(u2.getPasswd())){
                 alert.setTitle("Error de inicio de sesión");
                 alert.setContentText("Los datos introducidos no son correctos");

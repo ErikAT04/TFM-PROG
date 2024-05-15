@@ -8,15 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class SignUpOpt {
 
@@ -96,7 +92,7 @@ public class SignUpOpt {
     }
     public boolean existsInDB(String uname){
         Boolean bool;
-        Usuario u = UsuarioDAO.checkForLogin(uname);
+        Usuario u = UsuarioDAO.userForLogin(uname);
         return u!=null;
     }
     public void initVariables(Stage stage){
