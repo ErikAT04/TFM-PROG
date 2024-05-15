@@ -58,7 +58,7 @@ public class SignUpOpt {
         alert.setHeaderText(null);
 
         String uname = unameRegister.getText();
-        String passwd = unameRegister.getText();
+        String passwd = passRegister.getText();
         if (uname.isEmpty() || passwd.isEmpty()){
             alert.setTitle("Error de campos");
 
@@ -71,12 +71,13 @@ public class SignUpOpt {
                 alert.setTitle("Error de contraseñas");
                 alert.setContentText("Las contraseñas no coinciden, corrige ese error");
             } else {
-                if (existsInDB(uname, passwd)){
+                if (existsInDB(uname)){
                     alert.setTitle("Error de usuario");
                     alert.setContentText("Ya existe un usuario con ese nombre\nUtilice otro nombre");
                     alert.showAndWait();
                 } else {
                     UsuarioDAO.register(new Usuario(uname, passwd));
+                    DataBaseManager.firstConnection();
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Conexión creada");
                     alert.setContentText("Bienvenido a su nueva base de datos, " + DataBaseManager.username);
@@ -93,9 +94,9 @@ public class SignUpOpt {
         }
         alert.showAndWait();
     }
-    public boolean existsInDB(String uname, String passwd){
+    public boolean existsInDB(String uname){
         Boolean bool;
-        Usuario u = UsuarioDAO.checkForLogin(uname, passwd);
+        Usuario u = UsuarioDAO.checkForLogin(uname);
         return u!=null;
     }
     public void initVariables(Stage stage){

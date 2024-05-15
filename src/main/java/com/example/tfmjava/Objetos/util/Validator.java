@@ -1,5 +1,7 @@
 package com.example.tfmjava.Objetos.util;
 
+import javafx.scene.control.Alert;
+
 public class Validator {
     public static boolean validarDNI(String dni){
         if (dni.matches("(^[0-9]{8}[A-Z]$)")){
@@ -33,5 +35,48 @@ public class Validator {
         } else {
             return false;
         }
+    }
+    public static boolean validarUname(String uname){
+        if (uname.contains(" ")){
+            return false;
+        } else {
+            if (uname.length()<3 || uname.length()>15){
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+    public static boolean validarPasswd(String pass){
+        if (pass.length() < 8 || pass.length() > 30){
+            return false;
+        } else {
+            if (pass.matches("[^;,*`^]")){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    public static void mostrarInfoUname(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información de Nombre");
+        alert.setHeaderText("Normas del nombre de usuario:");
+        alert.setContentText("""
+                1. El nombre tiene que tener entre 4 y 30 caracteres
+                2. El nombre no puede tener espacios ni ";" en su interior
+                3. Solo hay un nombre de usuario disponible por base de datos.""");
+        alert.showAndWait();
+    }
+
+    public static void mostrarInfoPasswd() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información de la contraseña");
+        alert.setHeaderText("Normas de la contraseña:");
+        alert.setContentText("""
+                1. Tiene que tener entre 8 y 30 caracteres
+                2. No puede tener espacios ni los siguientes caracteres ";, ^, ;, *,`" en su interior
+                3. Solo hay un nombre de usuario disponible por base de datos.""");
+        alert.showAndWait();
     }
 }

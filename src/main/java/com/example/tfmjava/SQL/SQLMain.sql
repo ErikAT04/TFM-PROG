@@ -36,7 +36,7 @@ CREATE TABLE CITA(
     cod_cita INT PRIMARY KEY,
     fecha_hora DATE NOT NULL,
     observaciones VARCHAR(250) DEFAULT 'NO HAY OBSERVACIONES',
-    tratamiento INT NOT NULL REFERENCES TRATAMIENTO(cod_tratamiento),
+    tratamiento INT NOT NULL REFERENCES TRATAMIENTO(cod_trat),
     trabajadorEncargado INT NOT NULL REFERENCES TRABAJADOR(COD_TRABAJADOR),
     clientePedido VARCHAR(9) NOT NULL REFERENCES CLIENTE(dni)
 );

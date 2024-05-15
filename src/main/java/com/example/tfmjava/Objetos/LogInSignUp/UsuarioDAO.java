@@ -101,7 +101,7 @@ public class UsuarioDAO {
         }
 
     }
-    public static Usuario checkForLogin(String uname, String passwd){
+    public static Usuario checkForLogin(String uname){
         Usuario usuario = null;
         String sqlQuery = "SELECT * FROM USUARIO WHERE UNAME = ?";
 
@@ -116,7 +116,8 @@ public class UsuarioDAO {
             if (consulta.next()){
                 int id = consulta.getInt("id");
                 String dB = consulta.getString("DB");
-                usuario = new Usuario(uname, passwd, dB, id); //El usuario y la contraseña ya los tengo de antes si la consulta es correcta, sería una tontería volver a crear variables
+                String userPasswd = consulta.getString("PASSWD");
+                usuario = new Usuario(uname, userPasswd, dB, id); //El usuario y la contraseña ya los tengo de antes si la consulta es correcta, sería una tontería volver a crear variables
             }
 
             con.close();

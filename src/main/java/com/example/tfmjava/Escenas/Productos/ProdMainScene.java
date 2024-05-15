@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ProdMainScene implements Initializable{
+public class ProdMainScene{
     public ObservableList<Producto> listaProductos;
     @FXML
     private TableView<Producto> tablaProductos;
@@ -26,7 +26,7 @@ public class ProdMainScene implements Initializable{
     private TableColumn colMarca;
     @FXML
     private TableColumn colStock;
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         listaProductos = FXCollections.observableArrayList();
         ArrayList<Producto> productos = ProductoDAO.listarProductos();

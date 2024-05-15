@@ -40,25 +40,25 @@ public class MainScene implements Initializable {
 
     @FXML
     void onCitasAction(ActionEvent event) {
-        openThisScene("Citas/CitasMain.fxml", this.citasBtt);
+        openThisScene("CitasMain.fxml", this.citasBtt);
     }
 
     @FXML
     void onClientesAction(ActionEvent event) {
-        openThisScene("Clientes/ClientesMain.fxml", this.clientesBtt);
+        openThisScene("ClientesMain.fxml", this.clientesBtt);
     }
 
     @FXML
     void onOthersAction(ActionEvent event) {
         try {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/OptMenu.fml"));
+            Stage newStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/OptMenu.fxml"));
             Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
+            newStage.setScene(scene);
             Stage thisStage = (Stage) this.welcomeLabel.getScene().getWindow(); //Lo utilizaré si cierro sesión en las opciones o borro la cuenta.
             MainOptionMenu controller = loader.getController();
-            controller.addStageValue(thisStage);
-            stage.showAndWait();
+            controller.addStageValue(thisStage, newStage);
+            newStage.showAndWait();
         }catch (IOException e){
             throw new RuntimeException(e);
         }
@@ -66,17 +66,17 @@ public class MainScene implements Initializable {
 
     @FXML
     void onProductosAction(ActionEvent event) {
-        openThisScene("Productos/ProductosMain.fxml", this.productosBtt);
+        openThisScene("ProdMain.fxml", this.productosBtt);
     }
 
     @FXML
     void onTrabajadoresAction(ActionEvent event) {
-        openThisScene("Trabajadores/TrabajadoresMain.fxml", this.trabajadoresBtt);
+        openThisScene("TrabMain.fxml", this.trabajadoresBtt);
     }
 
     @FXML
     void onTratamientosAction(ActionEvent event) {
-        openThisScene("Tratamientos/TratamientosMain.fxml", this.tratamientosBtt);
+        openThisScene("TratMain.fxml", this.tratamientosBtt);
     }
 
     void openThisScene(String fxml, Button btt)  {

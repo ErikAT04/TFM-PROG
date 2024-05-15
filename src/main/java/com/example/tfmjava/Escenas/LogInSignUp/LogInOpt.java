@@ -4,6 +4,7 @@ import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.LogInSignUp.Usuario;
 import com.example.tfmjava.Objetos.LogInSignUp.UsuarioDAO;
 import com.example.tfmjava.Objetos.util.DataBaseManager;
+import com.example.tfmjava.Objetos.util.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class LogInOpt {
@@ -38,8 +40,8 @@ public class LogInOpt {
         } else {
             String uname = unameRegister.getText();
             String passwd = passRegister.getText();
-            Usuario u2 = UsuarioDAO.checkForLogin(uname, passwd);
-            if (u2==null){
+            Usuario u2 = UsuarioDAO.checkForLogin(uname);
+            if (u2==null || !passwd.equals(u2.getPasswd())){
                 alert.setTitle("Error de inicio de sesión");
                 alert.setContentText("Los datos introducidos no son correctos");
             }  else {
@@ -70,5 +72,12 @@ public class LogInOpt {
         this.escenario.setScene(scene);
         this.escenario.show();
     }
-
+    @FXML
+    void passwdInfoIMGClick(javafx.scene.input.MouseEvent mouseEvent) {
+        Validator.mostrarInfoPasswd();
+    }
+    @FXML
+    public void unameInfoIMGClick(javafx.scene.input.MouseEvent mouseEvent) {
+        Validator.mostrarInfoUname();
+    }
 }
