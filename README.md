@@ -45,6 +45,7 @@
 <ol>
    <li>Empecé con la clase DAO de Usuario, añadiendo los métodos de registro, borrado y un check para ver si el usuario a introducir existe. (Erik, 07/05/2024)</li>
    <li>Tras luchar con muchos intentos fallidos y usuarios creados de forma aleatoria, el registro funciona perfectamente (Erik, 12/05/2024)</li>
+   <li>Siguiendo el tema DAO, he logrado automatizar la lectura del archivo SQL con un Scanner</li>
 </ol>
 
 ### 5. Controladores
@@ -65,4 +66,8 @@ DIARIO DE CAGADAS DE ERIK:
    Solucionado cambiando de una sentencia preparada a una sentencia normal
 3. EL REGISTER AHORA DA PROBLEMAS AL INTENTAR DAR PERMISOS
    SOY PUTO LELO Y NO ME FIJE EN QUE ESTABA USANDO OTRO STATEMENT DIFERENTE
+4. El login HA DEJADO DE IR POR LA PUTA CARA
+   Ha sido que por algún motivo a intelliJ no le apetecía cargar el driverManager
+5. EL LOGIN NO FUNCIONA (un dia mas)
+   Solución: Soy memo y he puesto que la contraseña a la hora de registrarse salga del textField del nombre de usuario
 -->
