@@ -15,5 +15,8 @@
             <TableColumn fx:id="colHorario" prefWidth="81.0" text="Horario" />
         </columns>
       </TableView>
+      <Button fx:id="addTrabajadorId" layoutX="286.0" layoutY="319.0" mnemonicParsing="false" onAction="#onTrabajadorAddClick" text="Añadir Trabajador" />
+      <Button fx:id="addTrabajadorId" layoutX="447.0" layoutY="319.0" mnemonicParsing="false" onAction="#onTrabajadorEditClick" text="Editar Trabajador" />
+      <Button fx:id="DelTrabajadorId" layoutX="602.0" layoutY="319.0" mnemonicParsing="false" onAction="#onTrabajadorDelClick" text="Borrar Trabajador" />
     </children>
 </AnchorPane>

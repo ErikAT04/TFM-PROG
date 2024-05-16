@@ -16,5 +16,8 @@
             <TableColumn fx:id="colPrecio" prefWidth="47.0" text="Precio" />
         </columns>
       </TableView>
+      <Button fx:id="addTratamientoId" layoutX="271.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoAddClick" text="Añadir Tratamiento" />
+      <Button fx:id="EditTratamiento" layoutX="459.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoEditClick" text="Editar Tratamiento" />
+      <Button fx:id="delTratamientoId" layoutX="667.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoDelClick" text="Borrar Trtatamiento" />
     </children>
 </AnchorPane>

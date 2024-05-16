@@ -1,5 +1,6 @@
 package com.example.tfmjava.Escenas.Citas;
 
+import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.Cita;
 import com.example.tfmjava.Objetos.DAO.CitaDAO;
 import com.example.tfmjava.Objetos.Persona;
@@ -10,11 +11,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,16 +42,57 @@ public class CitasMainScene implements Initializable {
     @FXML
     public TableView<String[]> tablaCita;
     @FXML
-    void onCitasAdd(ActionEvent event) {
-
+    void onCitasAdd(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Citas/CitaSubMain.fxml"));
+        Scene scene = new Scene(loader.load());
+        CitasSubScene controller = loader.getController();
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
+        refreshTable();
     }
 
     @FXML
     void onCitasDelete(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error de borrado");
+        alert.setHeaderText(null);
+        if (tablaCita.getSelectionModel().getSelectedItem()==null){
+            alert.setContentText("No se ha seleccionado ningún hueco de la tabla");
+        } else {
+            String[] seleccion = tablaCita.getSelectionModel().getSelectedItem();
+            int numFilas = CitaDAO.borrarCita(Integer.parseInt(seleccion[0])); //No tiene por qué controlarse este parseo, porque siempre va a venir de un valor entero
+            if(numFilas==1){
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setTitle("Eliminación");
+                alert.setContentText("Elemento eliminado correctamente");
+            } else {
+                alert.setContentText("Ha ocurrido un problema al tratar de borrar la cita");
+            }
+            alert.showAndWait();
+            refreshTable();
+        }
     }
     @FXML
-    public void OnCitasSelect(ActionEvent event) {
+    public void OnCitasSelect(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error de actualización");
+        alert.setHeaderText(null);
+        if (tablaCita.getSelectionModel().getSelectedItem()==null){
+            alert.setContentText("No se ha seleccionado ningún hueco de la tabla");
+            alert.showAndWait();
+        } else {
+            int cod_cita = Integer.parseInt(tablaCita.getSelectionModel().getSelectedItem()[0]);
+            Cita cita = CitaDAO.buscarCita(cod_cita);
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Citas/CitaSubMain.fxml"));
+            Scene scene = new Scene(loader.load());
+            CitasSubScene controller = loader.getController();
+            controller.toEdit(cita);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.showAndWait();
+            refreshTable();
+        }
     }
 
     @Override
@@ -58,8 +105,7 @@ public class CitasMainScene implements Initializable {
         colTrabajadorEncargado.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[4]));
         colClientePedido.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[5]));
 
-        ObservableList<String[]> citaObservableList = FXCollections.observableList(CitaDAO.listarCitas());
-        tablaCita.setItems(citaObservableList);
+        refreshTable();
 
         /*
         private int cod_cita;
@@ -70,5 +116,8 @@ public class CitasMainScene implements Initializable {
         private int cod_tratamiento;
          */
     }
-
+    public void refreshTable(){
+        ObservableList<String[]> citaObservableList = FXCollections.observableList(CitaDAO.listarCitas());
+        tablaCita.setItems(citaObservableList);
+    }
 }

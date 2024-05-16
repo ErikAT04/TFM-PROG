@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Clientes.ClientesMainScene">
     <children>
         <fx:include source="MainView.fxml" />
-      <TableView layoutX="280.0" layoutY="78.0" prefHeight="200.0" prefWidth="566.0">
+      <TableView fx:id="clienteTable" layoutX="280.0" layoutY="78.0" prefHeight="200.0" prefWidth="566.0">
         <columns>
           <TableColumn fx:id="colDNICliente" prefWidth="75.0" text="DNI" />
           <TableColumn fx:id="colNombreCliente" prefWidth="75.0" text="Nombre" />
@@ -17,5 +17,8 @@
             <TableColumn fx:id="colEspecificacionesCliente" prefWidth="115.0" text="Especificaciones" />
         </columns>
       </TableView>
+      <Button fx:id="AddClienteId" layoutX="299.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClienteAddClick" text="Añadir Cliente" />
+      <Button fx:id="EditClienteId" layoutX="537.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClienteEditClick" text="Editar Cliente" />
+      <Button fx:id="DelClienteId" layoutX="778.0" layoutY="322.0" mnemonicParsing="false" onAction="#onClienteDeleteClick" text="Borrar Cliente" />
     </children>
 </AnchorPane>

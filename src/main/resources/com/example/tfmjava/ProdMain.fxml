@@ -14,5 +14,8 @@
             <TableColumn fx:id="colStock" prefWidth="63.0" text="Stock" />
         </columns>
       </TableView>
+      <Button fx:id="addProductoId" layoutX="309.0" layoutY="320.0" mnemonicParsing="false" onAction="#onProductoAddClick" text="Añadir Producto" />
+      <Button fx:id="editProductoId" layoutX="480.0" layoutY="320.0" mnemonicParsing="false" onAction="#onProductoEditClick" text="Editar Producto" />
+      <Button fx:id="delProductoId" layoutX="650.0" layoutY="320.0" mnemonicParsing="false" onAction="#onProductoDelClick" text="Borrar Producto" />
     </children>
 </AnchorPane>

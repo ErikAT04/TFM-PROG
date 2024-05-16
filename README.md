@@ -49,6 +49,7 @@
    <li>Siguiendo el tema DAO, he logrado automatizar la lectura del archivo SQL con un Scanner (Erik, 15/05/2024)</li>
    <li>He comenzado a trabajar en las clases DAO del resto de clases (Iván, 15/05/2024)</li>
    <li>He terminado de culminar el usuario, pudiendo cambiar su nombre y contraseña (Erik, 15/05/2024)</li>
+   <li>Clase DAO de citas completada (Erik, 16/05/2024)</li>
 </ol>
 
 ### 5. Controladores
