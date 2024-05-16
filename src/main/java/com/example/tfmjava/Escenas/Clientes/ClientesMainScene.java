@@ -91,7 +91,7 @@ public class ClientesMainScene implements Initializable {
         colApellidosCliente.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         colTlfCliente.setCellValueFactory(new PropertyValueFactory<>("telf"));
         colEdadCliente.setCellValueFactory(new PropertyValueFactory<>("edad"));
-        colFechaNacCliente.setCellValueFactory(new PropertyValueFactory<>("fechaNac"));
+        colFechaNacCliente.setCellValueFactory(new PropertyValueFactory<>("fnac"));
         colEspecificacionesCliente.setCellValueFactory(new PropertyValueFactory<>("especificaciones"));
         tableRefresh();
     }

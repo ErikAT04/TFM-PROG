@@ -15,6 +15,21 @@ import java.util.ArrayList;
 public class TratamientoDAO {
     public static ArrayList<Tratamiento> listarTratamientos(){
         ArrayList<Tratamiento> tratamientos= new ArrayList<>();
+        try(Connection con = DataBaseManager.getConnection()){
+            String sql = "select * from tratamiento";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            ResultSet resultado = sentencia.executeQuery();
+            while(resultado.next()){
+                int cod_trat = resultado.getInt("cod_trat");
+                String nombre = resultado.getString("nombre");
+                String descripcion = resultado.getString("descripcion");
+                double precio = resultado.getDouble("precio");
+                double duracion = resultado.getDouble("duracion_media_horas");
+                Tratamiento tratamiento = new Tratamiento(cod_trat,nombre,descripcion,precio,duracion);
+                ArrayList<Producto> productos =listarProductosDeTratamiento(tratamiento);
+                tratamientos.add(tratamiento);
+            }
+        }catch (SQLException e){}
         return tratamientos;
     }
     public static int addTratamiento(Tratamiento tratamiento){
@@ -27,7 +42,22 @@ public class TratamientoDAO {
         return 0;
     }
     public static ArrayList<Producto> listarProductosDeTratamiento (Tratamiento tratamiento){
-        return null;
+        ArrayList<Producto> productos = new ArrayList<>();
+        try(Connection con = DataBaseManager.getConnection()){
+            String sql = "select * from producto where cod_prod = ANY (SELECT cod_producto FROM producto_tratamiento WHERE cod_tratamiento = ?);";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, tratamiento.getCod_trat());
+            ResultSet resultado = sentencia.executeQuery();
+            while(resultado.next()){
+                int cod_prod = resultado.getInt("cod_prod");
+                String nombre = resultado.getString("nombre");
+                String marca = resultado.getString("marca");
+                int stock = resultado.getInt("stock");
+                Producto prod = new Producto(cod_prod, stock, nombre, marca);
+                productos.add(prod);
+            }
+        }catch (SQLException e){}
+        return productos;
     }
 
     public static Tratamiento buscarTratamiento(int codTrat) {

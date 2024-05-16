@@ -43,6 +43,7 @@ public class CitasSubScene implements Initializable {
     boolean editar=false;
     Cita citaPrevia;
 
+    @FXML
     private void onActionButton(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -66,7 +67,7 @@ public class CitasSubScene implements Initializable {
                     alert.setContentText("Ya hay una cita en ese momento con este trabajador");
                 } else {
                     numFilas = CitaDAO.actualizarCita(cita);
-                    if (numFilas == 0) {
+                    if (numFilas == 1) {
                         alert.setAlertType(Alert.AlertType.INFORMATION);
                         alert.setTitle("Actualización");
                         alert.setContentText("Actualización de la cita realizada correctamente");
@@ -79,7 +80,7 @@ public class CitasSubScene implements Initializable {
                     alert.setContentText("Ya hay una cita en ese momento con este trabajador");
                 } else {
                     numFilas = CitaDAO.addCita(cita);
-                    if (numFilas == 0) {
+                    if (numFilas == 1) {
                         alert.setAlertType(Alert.AlertType.INFORMATION);
                         alert.setTitle("Añadir cita");
                         alert.setContentText("Inserción de nueva cita correctamente");

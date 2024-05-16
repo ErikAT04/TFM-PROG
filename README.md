@@ -14,7 +14,7 @@
     14/31 clases completadas<br>
     6/12 escenas hechas
     
-  ![](https://geps.dev/progress/30)
+  ![](https://geps.dev/progress/50)
   </p>
 
 ## Progreso
@@ -40,6 +40,7 @@
    <li>He terminado el diseño principal de todo lo que es el login (Erik, 11/05/2024)</li>
    <li>He hecho rápidamente el menú principal, para ir probando más adelante (Erik, 14/05/2024)</li>
    <li>He hecho el diseño inicial de los archivos FXML principales, añadiendo tablas con sus respectivas columnas (Iván, 15/05/2024)</li>
+   <li>Funciones principales de los FXML acabados (Iván, 16/05/2024)</li>
 </ol>
 
 ### 4. Clases DAO
@@ -50,6 +51,7 @@
    <li>He comenzado a trabajar en las clases DAO del resto de clases (Iván, 15/05/2024)</li>
    <li>He terminado de culminar el usuario, pudiendo cambiar su nombre y contraseña (Erik, 15/05/2024)</li>
    <li>Clase DAO de citas completada (Erik, 16/05/2024)</li>
+   <li>Clases DAO de Trabajador, Persona, Cliente y Producto completadas (Iván, 16/05/2024)</li>
 </ol>
 
 ### 5. Controladores
@@ -59,6 +61,7 @@
    <li>En un principio, controlador del inicio completado (Erik, 14/05/2024)</li>
    <li>Controlador de ajustes prácticamente completado, faltan pulir 4 cosas (Erik, 15/05/2024)</li>
    <li>Para dar mas nivel, he añadido una opción para sacar toda la base de datos, la cual funciona perfectamente (Erik, 16/05/2024)</li>
+   <li>He conseguido arreglar fallos que estaban dando los LocalDate, además de terminar todo lo relacionado al apartado "Citas" (Erik, q6/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos

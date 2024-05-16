@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class ClientesSubScene implements{
+public class ClientesSubScene{
     @FXML
     private TextField nombreTF;
     @FXML
@@ -26,7 +26,9 @@ public class ClientesSubScene implements{
     boolean edit = false;
 
     private void onSendClick(){
-        if (nombreTF.getText().isEmpty() || apellidosTF.getText().isEmpty() || dniTF.getText().isEmpty() || telTF.getText().isEmpty() || espec.getText().isEmpty() || fnacChooser.getValue()==null)
+        if (nombreTF.getText().isEmpty() || apellidosTF.getText().isEmpty() || dniTF.getText().isEmpty() || telTF.getText().isEmpty() || espec.getText().isEmpty() || fnacChooser.getValue()==null){
+
+        }
     }
 
     public void toEdit(Cliente cliente){

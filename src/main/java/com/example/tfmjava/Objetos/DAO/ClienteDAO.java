@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,10 +30,9 @@ public class ClienteDAO {
                 String apellidos = consulta.getString("apellidos");
                 int tlf = consulta.getInt("telf");
                 int edad = consulta.getInt("edad");
-                Date fnac = consulta.getDate("fnac");
+                String fnac = consulta.getString("fnac");
                 String especificaciones = consulta.getString("especificaciones");
-
-                LocalDate localDate = fnac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate localDate = LocalDate.parse(fnac, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 
                 Cliente cliente = new Cliente(DNI,nombre,apellidos,tlf,edad,localDate,especificaciones);

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Tratamientos.TratMainScene">
+<AnchorPane prefHeight="400.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Tratamientos.TratMainScene">
     <children>
         <fx:include source="MainView.fxml" />
-      <TableView layoutX="240.0" layoutY="81.0" prefHeight="200.0" prefWidth="541.0">
+      <TableView fx:id="tablaTratamientos" layoutX="302.0" layoutY="87.0" prefHeight="200.0" prefWidth="541.0">
         <columns>
           <TableColumn fx:id="colCodTratamiento" prefWidth="105.0" text="Cod_tratamiento" />
-          <TableColumn fx:id="olNombreTratamiento" prefWidth="73.0" text="Nombre" />
-            <TableColumn fx:id="colDescripcion" prefWidth="74.0" text="Descripción" />
-            <TableColumn fx:id="colHorasMedias" prefWidth="130.0" text="Media_horas_duración" />
-            <TableColumn fx:id="colProductoUsados" prefWidth="110.0" text="Productos_usados" />
-            <TableColumn fx:id="colPrecio" prefWidth="47.0" text="Precio" />
+          <TableColumn fx:id="colNombreTratamiento" prefWidth="77.60003662109375" text="Nombre" />
+            <TableColumn fx:id="colDescripcion" prefWidth="189.60000610351562" text="Descripción" />
+            <TableColumn fx:id="colHorasMedias" prefWidth="86.39990234375" text="Duración" />
+            <TableColumn fx:id="colPrecio" prefWidth="84.0" text="Precio" />
         </columns>
       </TableView>
-      <Button fx:id="addTratamientoId" layoutX="271.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoAddClick" text="Añadir Tratamiento" />
-      <Button fx:id="EditTratamiento" layoutX="459.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoEditClick" text="Editar Tratamiento" />
-      <Button fx:id="delTratamientoId" layoutX="667.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoDelClick" text="Borrar Trtatamiento" />
+      <Button fx:id="addTratamientoId" layoutX="302.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoAddClick" text="Añadir Tratamiento" />
+      <Button fx:id="EditTratamiento" layoutX="515.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoEditClick" text="Editar Tratamiento" />
+      <Button fx:id="delTratamientoId" layoutX="716.0" layoutY="321.0" mnemonicParsing="false" onAction="#onTratamientoDelClick" text="Borrar Trtatamiento" />
     </children>
 </AnchorPane>

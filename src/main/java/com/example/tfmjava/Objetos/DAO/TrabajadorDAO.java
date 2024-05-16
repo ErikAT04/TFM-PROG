@@ -15,11 +15,11 @@ public class TrabajadorDAO {
     public static ArrayList<Trabajador> listarTrabajadores(){
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
         try(Connection con = DataBaseManager.getConnection()){
-            String sql = "SELECT * FROM PRODUCTO";
+            String sql = "SELECT * FROM TRABAJADOR";
             ResultSet consulta = con.prepareStatement(sql).executeQuery();
 
             while (consulta.next()){
-                int COD_TRABAJADOR = consulta.getInt("COD_TRABAJADOR");
+                int COD_TRABAJADOR = consulta.getInt("cod_trabajador");
                 String dni = consulta.getString("dni");
                 String nombre = consulta.getString("nombre");
                 String apellidos = consulta.getString("apellidos");

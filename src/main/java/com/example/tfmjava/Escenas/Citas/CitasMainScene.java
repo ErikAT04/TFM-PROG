@@ -42,7 +42,7 @@ public class CitasMainScene implements Initializable {
     @FXML
     public TableView<String[]> tablaCita;
     @FXML
-    void onCitasAdd(ActionEvent event) throws IOException{
+    void onCitasAddClick(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Citas/CitaSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         CitasSubScene controller = loader.getController();
@@ -53,7 +53,7 @@ public class CitasMainScene implements Initializable {
     }
 
     @FXML
-    void onCitasDelete(ActionEvent event) {
+    void onCitasDeleteClick(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de borrado");
         alert.setHeaderText(null);
@@ -69,12 +69,12 @@ public class CitasMainScene implements Initializable {
             } else {
                 alert.setContentText("Ha ocurrido un problema al tratar de borrar la cita");
             }
-            alert.showAndWait();
-            refreshTable();
         }
+        alert.showAndWait();
+        refreshTable();
     }
     @FXML
-    public void OnCitasSelect(ActionEvent event) throws IOException {
+    public void OnCitasEditClick(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de actualización");
         alert.setHeaderText(null);

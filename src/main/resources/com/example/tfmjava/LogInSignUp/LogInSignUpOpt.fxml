@@ -15,5 +15,7 @@
       <Button fx:id="loginBT" layoutX="114.0" layoutY="176.0" mnemonicParsing="false" onAction="#onLoginClick" text="Iniciar Sesión" />
       <Button fx:id="registerBT" layoutX="313.0" layoutY="176.0" mnemonicParsing="false" onAction="#onRegisterClick" prefHeight="25.0" prefWidth="86.0" text="Registrarse" />
       <Label layoutX="193.0" layoutY="117.0" text="Elige la opción a realizar" />
+      <Button layoutX="146.0" layoutY="220.0" mnemonicParsing="false" onAction="#generateDUMMY" text="Generar DUMMY" />
+      <Button layoutX="257.0" layoutY="220.0" mnemonicParsing="false" onAction="#loginAsDUMMY" text="Entrar como DUMMY" />
    </children>
 </AnchorPane>
