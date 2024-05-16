@@ -19,7 +19,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainOptionMenu {
     Stage previousStage;
@@ -88,11 +90,12 @@ public class MainOptionMenu {
 
         DirectoryChooser exploradorDeArchivos = new DirectoryChooser();
         File archivoElegido =exploradorDeArchivos.showDialog(currentStage); //Abro el explorador de archivos y le pido que elija dónde guardar el archivo a generar
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido))){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido + "/DataBaseAt(" + LocalDate.now()+ " " + LocalDateTime.now().getHour()+"."+LocalDateTime.now().getMinute()+"."+ LocalDateTime.now().getSecond()+").txt"))){
             ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
             ArrayList<Producto> productos = ProductoDAO.listarProductos();
             ArrayList<Trabajador> trabajadores = TrabajadorDAO.listarTrabajadores();
             ArrayList<Tratamiento> tratamientos = TratamientoDAO.listarTratamientos();
+            List<String[]> citas = CitaDAO.listarCitas();
             String str;
             str = "Base de datos de " + DataBaseManager.username + ", " + LocalDate.now();
             writer.write(str);
@@ -132,10 +135,17 @@ public class MainOptionMenu {
             }
             writer.newLine();
 
-            writer.write("Trabajadores: ");
+            writer.write("Citas: ");
             writer.newLine();
-            for (Trabajador t : trabajadores){
-                writer.write(t.toString());
+            for (String[] s : citas){
+                String res ="";
+                res += "Codigo de cita: " + s[0] + ", ";
+                res += "Fecha y hora: " + s[1] + ", ";
+                res += "Observaciones: " + s[2] + ", ";
+                res += "Tratamiento: " + s[3] + ", ";
+                res += "Trabajador encargado: " + s[4] + ", ";
+                res += "Cliente atendido: " + s[5];
+                writer.write(res);
                 writer.newLine();
             }
             writer.newLine();

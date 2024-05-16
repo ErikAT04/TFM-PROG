@@ -14,7 +14,7 @@
     14/31 clases completadas<br>
     6/12 escenas hechas
     
-  ![](https://geps.dev/progress/25)
+  ![](https://geps.dev/progress/30)
   </p>
 
 ## Progreso
@@ -57,6 +57,7 @@
    <li>He logrado terminar todo el sistema del login con mucha paciencia (Erik, 12/05/2024)</li>
    <li>En un principio, controlador del inicio completado (Erik, 14/05/2024)</li>
    <li>Controlador de ajustes prácticamente completado, faltan pulir 4 cosas (Erik, 15/05/2024)</li>
+   <li>Para dar mas nivel, he añadido una opción para sacar toda la base de datos, la cual funciona perfectamente (Erik, 16/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos

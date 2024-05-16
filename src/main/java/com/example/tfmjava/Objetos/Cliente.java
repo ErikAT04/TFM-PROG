@@ -1,13 +1,14 @@
 package com.example.tfmjava.Objetos;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Cliente extends Persona {
     private int telf;
     private int edad;
-    private Date fnac;
+    private LocalDate fnac;
     private String especificaciones;
-    public Cliente(String dni, String nombre, String apellidos, int telf, int edad, Date fnac, String especificaciones) {
+    public Cliente(String dni, String nombre, String apellidos, int telf, int edad, LocalDate fnac, String especificaciones) {
         super(dni, nombre, apellidos);
         this.telf = telf;
         this.edad = edad;
@@ -31,11 +32,11 @@ public class Cliente extends Persona {
         this.edad = edad;
     }
 
-    public Date getFnac() {
+    public LocalDate getFnac() {
         return fnac;
     }
 
-    public void setFnac(Date fnac) {
+    public void setFnac(LocalDate fnac) {
         this.fnac = fnac;
     }
 

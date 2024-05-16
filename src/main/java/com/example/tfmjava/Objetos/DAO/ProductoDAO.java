@@ -9,7 +9,9 @@ public class ProductoDAO {
         return 0;
     }
     public static ArrayList<Producto> listarProductos(){
-        return null;
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        return productos;
     }
     public static int ActualizarProducto(Producto producto){
         return 0;
