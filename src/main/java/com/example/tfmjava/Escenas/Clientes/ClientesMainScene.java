@@ -55,7 +55,7 @@ public class ClientesMainScene implements Initializable {
             alert.showAndWait();
         }else {
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSub.fxml"));
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
             Scene scene = new Scene(loader.load());
 
             stage.setScene(scene);
