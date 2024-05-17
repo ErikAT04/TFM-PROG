@@ -30,7 +30,6 @@ public class ProductoDAO {
 
                 Producto producto = new Producto(cod_Prod,stock,nombre,marca);
                 productos.add(producto);
-
             }
 
         }catch (SQLException e){

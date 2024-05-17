@@ -11,10 +11,10 @@
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando
 </p>
   <p style="text-align: center;">Progreso actual del proyecto:<br>
-    14/31 clases completadas<br>
-    6/12 escenas hechas
+    28/33 clases completadas<br>
+    10/17 escenas hechas
     
-  ![](https://geps.dev/progress/50)
+  ![](https://geps.dev/progress/70)
   </p>
 
 ## Progreso
@@ -82,3 +82,19 @@ DIARIO DE CAGADAS DE ERIK:
 5. EL LOGIN NO FUNCIONA (un dia mas)
    Solución: Soy memo y he puesto que la contraseña a la hora de registrarse salga del textField del nombre de usuario
 -->
+
+## TO DO:
+<ul>
+    <li>ClientesMainScene.java</li>
+    <li>ProdMainScene.java</li>
+    <li>ProdSubScene.java</li>
+    <li>TrabajadoresMainScene.java</li>
+    <li>TrabajadoresSubScene.java</li>
+    <li>TratMainScene.java</li>
+    <li>TratSubScene.java</li>
+    <li>TratamientoDAO.java</li>
+    <li>ClientesSubMain.fxml</li>
+    <li>ProductosSubMain.fxml</li>
+    <li>TrabajadoresSubMain.fxml</li>
+    <li>TratamientosSubMain.fxml</li>
+</ul>

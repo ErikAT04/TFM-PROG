@@ -106,15 +106,6 @@ public class CitasMainScene implements Initializable {
         colClientePedido.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[5]));
 
         refreshTable();
-
-        /*
-        private int cod_cita;
-        private LocalDate fecha_hora;
-        private String observaciones;
-        private String dniCliente;
-        private int cod_trabajador;
-        private int cod_tratamiento;
-         */
     }
     public void refreshTable(){
         ObservableList<String[]> citaObservableList = FXCollections.observableList(CitaDAO.listarCitas());
