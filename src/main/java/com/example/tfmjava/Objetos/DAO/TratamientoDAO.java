@@ -27,6 +27,7 @@ public class TratamientoDAO {
                 double duracion = resultado.getDouble("duracion_media_horas");
                 Tratamiento tratamiento = new Tratamiento(cod_trat,nombre,descripcion,precio,duracion);
                 ArrayList<Producto> productos =listarProductosDeTratamiento(tratamiento);
+                tratamiento.productos_utilizados = productos;
                 tratamientos.add(tratamiento);
             }
         }catch (SQLException e){}

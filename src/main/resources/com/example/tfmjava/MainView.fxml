@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MainScene">
+<AnchorPane prefHeight="400.0" prefWidth="347.0" stylesheets="@otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MainScene">
    <children>
       <Label fx:id="welcomeLabel" layoutX="19.0" layoutY="34.0" text="Te damos la bienvenida," textAlignment="CENTER">
          <font>

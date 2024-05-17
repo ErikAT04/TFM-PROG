@@ -46,7 +46,7 @@ public class ClienteDAO {
     }
     public static int addCliente(Cliente cliente){
         int numFilas=0;
-        String sql = "INSERT INTO (dni, nombre, apellidos, telf, edad, fnac, especificaciones) VALUES (STR_TO_DATE(?,'%d-%m-%Y'), ?, ?, ?, ?)";
+        String sql = "INSERT INTO CLIENTE (dni, nombre, apellidos, telf, edad, fnac, especificaciones) VALUES (?, ?, ?, ?, ?, STR_TO_DATE(?,'%Y-%m-%d'), ?)";
         try(Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, cliente.getDni());
@@ -55,11 +55,11 @@ public class ClienteDAO {
             sentencia.setInt(4, cliente.getTelf());
             sentencia.setInt(5, cliente.getEdad());
             sentencia.setString(6, String.valueOf(cliente.getFnac()));
-            sentencia.setInt(7, cliente.getEdad());
+            sentencia.setString(7, cliente.getEspecificaciones());
 
             numFilas = sentencia.executeUpdate();
         }catch (SQLException e){
-            System.out.println("Error de inserción");
+            System.out.println("Error de inserción" + e.getMessage());
         }
         return numFilas;
     }
@@ -78,7 +78,7 @@ public class ClienteDAO {
     public static int actualizarCliente(Cliente cliente){
         int numFilas = 0;
 
-        String sql = "UPDATE CITA SET , nombre = ?, apellidos = ?, telf = ?, edad = ?, fnac = STR_TO_DATE(?,'%d-%m-%Y') WHERE dni = ?";
+        String sql = "UPDATE CLIENTE SET nombre = ?, apellidos = ?, telf = ?, edad = ?, fnac = STR_TO_DATE(?,'%Y-%m-%d') WHERE dni = ?";
         try(Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, cliente.getNombre());
@@ -86,7 +86,7 @@ public class ClienteDAO {
             sentencia.setInt(3, cliente.getTelf());
             sentencia.setInt(4, cliente.getEdad());
             sentencia.setString(5, String.valueOf(cliente.getFnac()));
-            sentencia.setString(6, cliente.getDni());
+            sentencia.setString(6, cliente.getDni()); //El dni actual (si se edita)
             numFilas= sentencia.executeUpdate();
         }catch (SQLException e){
             System.out.println("Error " + e);

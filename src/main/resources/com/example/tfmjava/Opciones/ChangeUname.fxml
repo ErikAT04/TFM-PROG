@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="190.0" prefWidth="334.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.ChangeUname">
+<AnchorPane prefHeight="190.0" prefWidth="334.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.ChangeUname">
    <children>
       <Button layoutX="116.0" layoutY="150.0" mnemonicParsing="false" onAction="#onChangeField" text="Solicitar Cambio" />
       <Label layoutX="14.0" layoutY="58.0" text="Nuevo nombre de usuario:" />

@@ -1,17 +1,23 @@
 package com.example.tfmjava.Escenas.Tratamientos;
 
+import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.DAO.TratamientoDAO;
+import com.example.tfmjava.Objetos.Producto;
 import com.example.tfmjava.Objetos.Tratamiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -46,8 +52,12 @@ public class TratMainScene implements Initializable {
     private TableView<Tratamiento> tablaTratamientos;
 
     @FXML
-    void onTratamientoAddClick(ActionEvent event) {
-
+    void onTratamientoAddClick(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @FXML
@@ -56,8 +66,15 @@ public class TratMainScene implements Initializable {
     }
 
     @FXML
-    void onTratamientoEditClick(ActionEvent event) {
-
+    void onTratamientoEditClick(ActionEvent event) throws IOException {
+        Tratamiento tratamiento = tablaTratamientos.getSelectionModel().getSelectedItem();
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
+        Scene scene = new Scene(loader.load());
+        TratSubScene controller = loader.getController();
+        controller.toEdit(tratamiento);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
     @Override

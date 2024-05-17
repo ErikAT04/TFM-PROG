@@ -14,7 +14,7 @@
     28/33 clases completadas<br>
     10/17 escenas hechas
     
-  ![](https://geps.dev/progress/70)
+  ![](https://geps.dev/progress/80)
   </p>
 
 ## Progreso
@@ -41,6 +41,7 @@
    <li>He hecho rápidamente el menú principal, para ir probando más adelante (Erik, 14/05/2024)</li>
    <li>He hecho el diseño inicial de los archivos FXML principales, añadiendo tablas con sus respectivas columnas (Iván, 15/05/2024)</li>
    <li>Funciones principales de los FXML acabados (Iván, 16/05/2024)</li>
+   <li>He añadido un css de lo más simple para dar otro toque (Erik, 17/05/2024)</li>
 </ol>
 
 ### 4. Clases DAO
@@ -61,7 +62,9 @@
    <li>En un principio, controlador del inicio completado (Erik, 14/05/2024)</li>
    <li>Controlador de ajustes prácticamente completado, faltan pulir 4 cosas (Erik, 15/05/2024)</li>
    <li>Para dar mas nivel, he añadido una opción para sacar toda la base de datos, la cual funciona perfectamente (Erik, 16/05/2024)</li>
-   <li>He conseguido arreglar fallos que estaban dando los LocalDate, además de terminar todo lo relacionado al apartado "Citas" (Erik, q6/05/2024)</li>
+   <li>He conseguido arreglar fallos que estaban dando los LocalDate, además de terminar todo lo relacionado al apartado "Citas" (Erik, 16/05/2024)</li>
+   <li>Clases de cliente terminados</li>
+   <li>He comenzao la clase TratSubScene, añadiendo y haciendo pruebas con un CheckComboBox</li>
 </ol>
 
 ## Cambios y Arreglos
@@ -85,7 +88,6 @@ DIARIO DE CAGADAS DE ERIK:
 
 ## TO DO:
 <ul>
-    <li>ClientesMainScene.java</li>
     <li>ProdMainScene.java</li>
     <li>ProdSubScene.java</li>
     <li>TrabajadoresMainScene.java</li>

@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="306.0" prefWidth="264.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.MainOptionMenu">
+<AnchorPane prefHeight="306.0" prefWidth="264.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.MainOptionMenu">
    <children>
       <Button layoutX="50.0" layoutY="67.0" mnemonicParsing="false" onAction="#onUnameChangeClick" text="Cambiar nombre de usuario" />
       <Button layoutX="50.0" layoutY="115.0" mnemonicParsing="false" onAction="#onPassChangeClick" prefHeight="26.0" prefWidth="164.0" text="Cambiar contraseña" />
       <Button fx:id="logOffBtt" layoutX="50.0" layoutY="163.0" mnemonicParsing="false" onAction="#onLogOffClick" prefHeight="26.0" prefWidth="164.0" text="Cerrar sesión" />
-      <Button fx:id="eraseBtt" layoutX="80.0" layoutY="256.0" mnemonicParsing="false" onAction="#onEraseAccountClick" style="-fx-background-color: red;" text="Eliminar cuenta" textFill="WHITE">
+      <Button fx:id="eraseBtt" layoutX="80.0" layoutY="256.0" mnemonicParsing="false" onAction="#onEraseAccountClick" style="-fx-background-color: #9c1616;" text="Eliminar cuenta" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

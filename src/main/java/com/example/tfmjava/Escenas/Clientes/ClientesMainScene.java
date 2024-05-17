@@ -38,7 +38,7 @@ public class ClientesMainScene implements Initializable {
     ObservableList<Cliente> clienteObservableList;
     public void onClienteAddClick(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSub.fxml"));
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.showAndWait();
@@ -57,7 +57,8 @@ public class ClientesMainScene implements Initializable {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
             Scene scene = new Scene(loader.load());
-
+            ClientesSubScene controller = loader.getController();
+            controller.toEdit(cliente);
             stage.setScene(scene);
             stage.showAndWait();
             tableRefresh();

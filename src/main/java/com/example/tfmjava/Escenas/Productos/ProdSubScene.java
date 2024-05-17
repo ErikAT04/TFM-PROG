@@ -4,7 +4,9 @@ import com.example.tfmjava.Objetos.DAO.ProductoDAO;
 import com.example.tfmjava.Objetos.Producto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class ProdSubScene {
     @FXML
@@ -13,9 +15,13 @@ public class ProdSubScene {
     private TextField marcaTF;
     @FXML
     private TextField stockTF;
-
-    public void onEditarClick(){
+    @FXML
+    private Button sendBtt;
+    Producto prevProd;
+    boolean editar = false;
+    public void onSendClick(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        String accion = (editar)? " editado " : " añadido ";
         if (nombreTF.getText().isEmpty()||marcaTF.getText().isEmpty()||stockTF.getText().isEmpty()){
             alert.setHeaderText(null);
             alert.setTitle("Error de contenido");
@@ -23,21 +29,39 @@ public class ProdSubScene {
             alert.showAndWait();
         } else {
             try {
+                int numFilasAfec;
                 String nombre = nombreTF.getText();
                 String marca = marcaTF.getText();
                 int stock = Integer.parseInt(stockTF.getText());
-                Producto producto = new Producto(stock, marca, nombre);
-                int numFilasAfec = ProductoDAO.addProducto(producto);
+                if (stock<0){
+                    alert.setContentText("No puede haber stock negativo");
+                } else {
+                    Producto producto = new Producto(stock, marca, nombre);
+                    if (editar){
+                        numFilasAfec = ProductoDAO.ActualizarProducto(producto);
+                    } else {
+                        numFilasAfec = ProductoDAO.addProducto(producto);
+                    }
+                    if (numFilasAfec==1){
+                        alert.setContentText("Producto" + accion + "correctamente");
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        Stage stage = (Stage) this.sendBtt.getScene().getWindow();
+                        stage.close();
+                    } else {
+                        alert.setContentText("No se ha podido llevar a cabo la acción correctamente");
+                    }
+                }
             }catch (Exception e) {
-                alert.setHeaderText(null);
                 alert.setTitle("Error de conversión");
                 alert.setContentText("En el campo de 'Stock' tiene que haber valores numéricos");
-                alert.showAndWait();
             }
+            alert.showAndWait();
         }
     }
 
-    public void loadItems(Producto prod){
+    public void toEdit(Producto prod){
+        this.prevProd = prod;
+        editar = true;
         nombreTF.setText(prod.getNombre());
         marcaTF.setText(prod.getMarca());
         marcaTF.setText(prod.getNombre());

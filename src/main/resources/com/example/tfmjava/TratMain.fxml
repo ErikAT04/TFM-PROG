@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Tratamientos.TratMainScene">
+<AnchorPane prefHeight="400.0" prefWidth="883.0" stylesheets="@otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Tratamientos.TratMainScene">
     <children>
         <fx:include source="MainView.fxml" />
       <TableView fx:id="tablaTratamientos" layoutX="302.0" layoutY="87.0" prefHeight="200.0" prefWidth="541.0">
