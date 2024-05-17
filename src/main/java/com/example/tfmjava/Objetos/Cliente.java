@@ -47,4 +47,15 @@ public class Cliente extends Persona {
     public void setEspecificaciones(String especificaciones) {
         this.especificaciones = especificaciones;
     }
+
+    @Override
+    public String toString() {
+        return
+                "DNI: '" + dni + '\'' +
+                ", Nombre y Apellidos: '" + nombre + " " + apellidos + '\'' +
+                ", Teléfono: " + telf +
+                ", Edad: " + edad +
+                ", Fecha de nacimiento: " + fnac +
+                ", Especificaciones: '" + especificaciones + '\'';
+    }
 }

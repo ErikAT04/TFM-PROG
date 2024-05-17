@@ -27,4 +27,13 @@ public class Trabajador extends Persona{
     public void setHorario(String horario) {
         Horario = horario;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Código de trabajador: " + cod_trabajador +
+                ", Horario: '" + Horario + '\'' +
+                ", DNI:'" + dni + '\'' +
+                ", Nombre y apellidos: '" + nombre + " " + apellidos + '\'';
+    }
 }

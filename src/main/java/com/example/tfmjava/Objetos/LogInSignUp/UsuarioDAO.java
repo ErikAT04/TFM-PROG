@@ -2,10 +2,11 @@ package com.example.tfmjava.Objetos.LogInSignUp;
 
 import com.example.tfmjava.Objetos.util.DataBaseManager;
 
+import javax.net.ssl.SSLEngine;
 import java.sql.*;
 
 public class UsuarioDAO {
-    public static Connection conectarLogin(){
+    public static Connection conectarLogin(){ //Esta conexión hace referencia a una base de datos concreta, la que guarda usuarios
         Connection con=null;
         String usuario = "root";
         String password = "IESRibera23";
@@ -17,7 +18,7 @@ public class UsuarioDAO {
         }
         return con;
     }
-    public static Connection conectarSignUp(){
+    public static Connection conectarSignUp(){ //Esta conexión sirve para poder editar el sistema, es necesario para crear usuarios y bases de datos porque dentro de conexiones como la anterior no se puede hacer
         Connection con=null;
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=IESRibera23");
@@ -58,8 +59,6 @@ public class UsuarioDAO {
 
                     numFilas = sentencia.executeUpdate();
                     create_Database(dbName, usuario.getUname(), usuario.getPasswd());
-                }   else {
-                    numFilas = -1; //Por si lo que falla es el select, tenerlo localizado
                 }
             }
 
@@ -123,20 +122,27 @@ public class UsuarioDAO {
         }
         return  usuario;
     }
-    public static void eraseUser(Usuario usuario){
+    public static boolean eraseUser(Usuario usuario){
+        boolean bool = false;
         String sqlDeleteDB = "DROP DATABASE " + usuario.getDb();
         String sqlDeleteUser = "DROP USER " + usuario.getUname();
+        String sqlDeleteFromUsers = "DELETE FROM USUARIO WHERE UNAME = ?";
 
         try {
             Connection con = conectarSignUp();
             PreparedStatement sentencia = con.prepareStatement(sqlDeleteDB);
-            con = conectarLogin();
             sentencia.executeUpdate();
             sentencia = con.prepareStatement(sqlDeleteUser);
             sentencia.executeUpdate();
+            con = conectarLogin();
+            sentencia = con.prepareStatement(sqlDeleteFromUsers);
+            sentencia.setString(1, usuario.getUname());
+            sentencia.executeUpdate();
             con.close();
+            bool = true;
         }catch (SQLException e){
         }
+        return bool;
     }
 
     public static int updateUser(Usuario usuario) {

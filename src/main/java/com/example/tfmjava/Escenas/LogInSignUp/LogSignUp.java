@@ -65,10 +65,12 @@ public class LogSignUp {
             try{
                 Scanner sc = new Scanner(new File("src/main/java/com/example/tfmjava/SQL/dummySQL1.sql"));
                 Connection con = UsuarioDAO.conectarSignUp();
+
                 while (sc.hasNextLine()){
                     String str = sc.nextLine();
                     if (str.contains(";")){
                         con.prepareStatement(str).executeUpdate();
+                        str="";
                     }
                 }
 
@@ -77,17 +79,22 @@ public class LogSignUp {
                 DataBaseManager.dbName = "dummybbdd";
                 con = DataBaseManager.getConnection();
                 sc = new Scanner(new File("src/main/java/com/example/tfmjava/SQL/SQLMain.sql"));
+                String str="";
                 while (sc.hasNextLine()){
-                    String str = sc.nextLine();
+                    str += sc.nextLine();
                     if (str.contains(";")){
                         con.prepareStatement(str).executeUpdate();
+                        str="";
                     }
                 }
+
+                con = DataBaseManager.getConnection();
                 sc = new Scanner(new File("src/main/java/com/example/tfmjava/SQL/dummySQL2.sql"));
                 while (sc.hasNextLine()){
-                    String str = sc.nextLine();
+                    str += sc.nextLine();
                     if (str.contains(";")){
                         con.prepareStatement(str).executeUpdate();
+                        str="";
                     }
                 }
                 con.close();
@@ -102,7 +109,9 @@ public class LogSignUp {
                 stage.show();
 
             } catch (IOException e) {
-            }catch (SQLException e){}
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 

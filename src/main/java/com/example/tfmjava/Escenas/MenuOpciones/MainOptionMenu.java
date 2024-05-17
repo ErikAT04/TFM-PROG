@@ -3,6 +3,8 @@ package com.example.tfmjava.Escenas.MenuOpciones;
 import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.*;
 import com.example.tfmjava.Objetos.DAO.*;
+import com.example.tfmjava.Objetos.LogInSignUp.Usuario;
+import com.example.tfmjava.Objetos.LogInSignUp.UsuarioDAO;
 import com.example.tfmjava.Objetos.util.DataBaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -22,6 +25,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MainOptionMenu {
     Stage previousStage;
@@ -40,12 +44,31 @@ public class MainOptionMenu {
 
     @FXML
     void onEraseAccountClick(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("¿Estás seguro de que quieres borrar tu cuenta?\nEs una acción IRREVERSIBLE");
+        alert.setHeaderText("Confirmación de eliminación");
+        alert.setTitle("Eliminar cuenta");
+        boolean bool = false;
+        Optional<ButtonType> resultado = alert.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK){
+            bool = UsuarioDAO.eraseUser(UsuarioDAO.userForLogin(DataBaseManager.username));
+        }
+        Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Eliminar cuenta");
+        if (bool) {
+            alert.setHeaderText("Cuenta eliminada correctamente");
+            alert.setContentText("¡Hasta la vista!");
+            alert.showAndWait();
+            returnToBeginning();
+        } else {
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setContentText("Ha habido un problema");
+            alert.showAndWait();
+        }
     }
     @FXML
     void onLogOffClick(ActionEvent event) {
-        this.previousStage.close(); //Cerramos el stage de antes
-        this.currentStage.close(); //Cerramos el actual
         DataBaseManager.username=null;
         DataBaseManager.password=null;
         DataBaseManager.dbName=null;
@@ -54,6 +77,13 @@ public class MainOptionMenu {
         alert.setHeaderText(null);
         alert.setContentText("Sesión cerrada correctamente, ¡vuelva pronto!");
         alert.showAndWait();
+        returnToBeginning();
+    }
+
+    private void returnToBeginning() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        this.previousStage.close(); //Cerramos el stage de antes
+        this.currentStage.close(); //Cerramos el actual
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("LogInSignUp/LogInSignUpOpt.fxml"));
@@ -63,10 +93,11 @@ public class MainOptionMenu {
             stage.show();
         }catch (IOException e){
             alert.setTitle("Error");
-            alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error");
+            alert.showAndWait();
         }
     }
+
     @FXML
     void onPassChangeClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();

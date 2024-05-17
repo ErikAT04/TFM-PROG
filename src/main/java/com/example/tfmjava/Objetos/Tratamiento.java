@@ -89,4 +89,14 @@ public class Tratamiento {
         Tratamiento that = (Tratamiento) o;
         return getCod_trat() == that.getCod_trat();
     }
+
+    @Override
+    public String toString() {
+        return
+                "Código de tratamiento: " + cod_trat +
+                ", Nombre: '" + nombre + '\'' +
+                ", Descripción: '" + descripcion + '\'' +
+                ", Precio: " + precio +
+                ", Duración Media:" + duracion_media_horas;
+    }
 }

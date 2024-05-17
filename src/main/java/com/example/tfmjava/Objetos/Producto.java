@@ -60,4 +60,13 @@ public class Producto {
         Producto producto = (Producto) o;
         return cod_prod == producto.cod_prod;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Código de producto: " + cod_prod +
+                ", Cantidad en stock: " + stock +
+                ", Nombre: '" + nombre + '\'' +
+                ", Marca: '" + marca + '\'';
+    }
 }
