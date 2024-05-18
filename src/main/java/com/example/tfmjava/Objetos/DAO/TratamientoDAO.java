@@ -19,6 +19,7 @@ public class TratamientoDAO {
             String sql = "select * from tratamiento";
             PreparedStatement sentencia = con.prepareStatement(sql);
             ResultSet resultado = sentencia.executeQuery();
+
             while(resultado.next()){
                 int cod_trat = resultado.getInt("cod_trat");
                 String nombre = resultado.getString("nombre");
@@ -83,9 +84,35 @@ public class TratamientoDAO {
                 duracion_media_horas DOUBLE NOT NULL
              */
         }catch (SQLException e){
-
         }
 
         return tratamiento;
+    }
+    public static int reiniciarProductosDeTratamientos(int cod_trat){
+        String sql = "DELETE FROM PRODUCTO_TRATAMIENTO WHERE COD_TRATAMIENTO = ?";
+        int numFilas = 0;
+        try(Connection con = DataBaseManager.getConnection()){
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, cod_trat);
+            numFilas = sentencia.executeUpdate();
+        }catch (SQLException e){
+        }
+        return numFilas;
+    }
+
+    public static int addAllFilas(ArrayList<Producto> productos, int cod_trat) {
+        int numFilas = 0;
+        String sql = "INSERT INTO PRODUCTO_TRATAMIENTO VALUES(?, ?)";
+        try (Connection con = DataBaseManager.getConnection()){
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            for (Producto p : productos){
+                sentencia.setInt(1, p.getCod_prod());
+                sentencia.setInt(2, cod_trat);
+                sentencia.executeUpdate();
+                numFilas++;
+            }
+        }catch (SQLException e){
+        }
+        return numFilas;
     }
 }

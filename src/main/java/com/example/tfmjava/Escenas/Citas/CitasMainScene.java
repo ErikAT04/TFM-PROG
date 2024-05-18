@@ -18,6 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -47,6 +48,8 @@ public class CitasMainScene implements Initializable {
         Scene scene = new Scene(loader.load());
         CitasSubScene controller = loader.getController();
         Stage stage = new Stage();
+        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
         refreshTable();
@@ -89,6 +92,8 @@ public class CitasMainScene implements Initializable {
             CitasSubScene controller = loader.getController();
             controller.toEdit(cita);
             Stage stage = new Stage();
+            Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+            stage.getIcons().add(img);
             stage.setScene(scene);
             stage.showAndWait();
             refreshTable();

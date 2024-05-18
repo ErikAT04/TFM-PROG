@@ -11,6 +11,10 @@ public class Trabajador extends Persona{
         this.cod_trabajador = cod_trabajador;
         Horario = horario;
     }
+    public Trabajador(String dni, String nombre, String apellidos, String horario) {
+        super(dni, nombre, apellidos);
+        Horario = horario;
+    }
 
     public int getCod_trabajador() {
         return cod_trabajador;

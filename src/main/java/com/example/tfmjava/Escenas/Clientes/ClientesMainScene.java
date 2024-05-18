@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOError;
@@ -40,6 +41,8 @@ public class ClientesMainScene implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
         Scene scene = new Scene(loader.load());
+        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
         tableRefresh();
@@ -55,6 +58,8 @@ public class ClientesMainScene implements Initializable {
             alert.showAndWait();
         }else {
             Stage stage = new Stage();
+            Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+            stage.getIcons().add(img);
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
             Scene scene = new Scene(loader.load());
             ClientesSubScene controller = loader.getController();

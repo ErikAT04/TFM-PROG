@@ -60,33 +60,37 @@ public class CitasSubScene implements Initializable {
             Tratamiento tratamiento = tratamientoHashMap.get(tratamientoComboBox.getValue());
             LocalDate fecha = selectorFecha.getValue();
             String hora = selectorHora.getText();
-            Cita cita = new Cita(fecha, observaciones, trabajador, tratamiento, cliente);
-            if (editar) {
-                cita.setCod_cita(citaPrevia.getCod_cita());
-                if (CitaDAO.otherFechaHora(cita)){
-                    alert.setContentText("Ya hay una cita en ese momento con este trabajador");
-                } else {
-                    numFilas = CitaDAO.actualizarCita(cita);
-                    if (numFilas == 1) {
-                        alert.setAlertType(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Actualización");
-                        alert.setContentText("Actualización de la cita realizada correctamente");
-                        stage.close();
-                    }
-                }
+            if (true){
+
             } else {
-                cita.setCod_cita(0);
-                if (CitaDAO.otherFechaHora(cita)){
-                    alert.setContentText("Ya hay una cita en ese momento con este trabajador");
-                } else {
-                    numFilas = CitaDAO.addCita(cita);
-                    if (numFilas == 1) {
-                        alert.setAlertType(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Añadir cita");
-                        alert.setContentText("Inserción de nueva cita correctamente");
-                        stage.close();
+                Cita cita = new Cita(fecha, observaciones, trabajador, tratamiento, cliente);
+                if (editar) {
+                    cita.setCod_cita(citaPrevia.getCod_cita());
+                    if (CitaDAO.otherFechaHora(cita)) {
+                        alert.setContentText("Ya hay una cita en ese momento con este trabajador");
                     } else {
-                        alert.setContentText("Hubo un error añadiendo la cita");
+                        numFilas = CitaDAO.actualizarCita(cita);
+                        if (numFilas == 1) {
+                            alert.setAlertType(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Actualización");
+                            alert.setContentText("Actualización de la cita realizada correctamente");
+                            stage.close();
+                        }
+                    }
+                } else {
+                    cita.setCod_cita(0);
+                    if (CitaDAO.otherFechaHora(cita)) {
+                        alert.setContentText("Ya hay una cita en ese momento con este trabajador");
+                    } else {
+                        numFilas = CitaDAO.addCita(cita);
+                        if (numFilas == 1) {
+                            alert.setAlertType(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Añadir cita");
+                            alert.setContentText("Inserción de nueva cita correctamente");
+                            stage.close();
+                        } else {
+                            alert.setContentText("Hubo un error añadiendo la cita");
+                        }
                     }
                 }
             }

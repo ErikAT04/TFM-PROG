@@ -7,9 +7,11 @@ import com.example.tfmjava.Objetos.util.DataBaseManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
@@ -35,6 +37,8 @@ public class LogSignUp {
         Scene scene = new Scene(fxmlLoader.load());
         LogInOpt controller = fxmlLoader.getController();
         Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
+        Image img = escenarioActual.getIcons().get(0);
+        stage.getIcons().add(img);
         controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");
         stage.setScene(scene);
@@ -47,6 +51,8 @@ public class LogSignUp {
         Scene scene = new Scene(fxmlLoader.load());
         SignUpOpt controller = fxmlLoader.getController();
         Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
+        Image img = escenarioActual.getIcons().get(0);
+        stage.getIcons().add(img);
         controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");
         stage.setScene(scene);

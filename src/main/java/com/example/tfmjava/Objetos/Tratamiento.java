@@ -20,7 +20,13 @@ public class Tratamiento {
         this.duracion_media_horas = duracion_media_horas;
         productos_utilizados = new ArrayList<>();
     }
-
+    public Tratamiento(String nombre, String descripcion, double precio, double duracion_media_horas) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.duracion_media_horas = duracion_media_horas;
+        productos_utilizados = new ArrayList<>();
+    }
     public int getCod_trat() {
         return cod_trat;
     }

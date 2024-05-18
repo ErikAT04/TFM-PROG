@@ -66,6 +66,7 @@ public class TrabajadoresMainScene implements Initializable {
         colHorario.setCellValueFactory(new PropertyValueFactory<>("horario"));
         refreshTable();
     }
+
     public void refreshTable() {
         ObservableList<Trabajador> trabajadorObservableList = FXCollections.observableArrayList(TrabajadorDAO.listarTrabajadores());
         tablaTrabajador.setItems(trabajadorObservableList);

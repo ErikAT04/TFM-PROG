@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="270.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/21" stylesheets="@../otherSRC/css/mainStyle.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.LogInSignUp.LogInOpt">
+<AnchorPane prefHeight="270.0" prefWidth="392.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.LogInSignUp.LogInOpt">
     <children>
         <Label layoutX="121.0" layoutY="45.0" text="Inicio de sesión">
             <font>
@@ -22,12 +22,12 @@
         <TextField fx:id="unameRegister" layoutX="140.0" layoutY="119.0" />
         <PasswordField fx:id="passRegister" layoutX="140.0" layoutY="166.0" />
         <Label fx:id="passTXT" layoutX="232.0" layoutY="241.0" />
-      <ImageView fitHeight="26.0" fitWidth="22.0" layoutX="297.0" layoutY="121.0" onMouseClicked="#unameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="292.0" layoutY="116.0" onMouseClicked="#unameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="297.0" layoutY="168.0" onMouseClicked="#passwdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="292.0" layoutY="163.0" onMouseClicked="#passwdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>

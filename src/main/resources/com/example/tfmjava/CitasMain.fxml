@@ -16,8 +16,8 @@
             <TableColumn fx:id="colFechaHora" prefWidth="88.0" text="Fecha_hora" />
         </columns>
       </TableView>
-      <Button fx:id="addCitaId" layoutX="344.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCitasAddClick" text="Añadir Cita" />
-      <Button fx:id="DelCitaId" layoutX="998.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCitasDeleteClick" text="Borrar Cita" />
-      <Button fx:id="EditCitaId" layoutX="642.0" layoutY="333.0" mnemonicParsing="false" onAction="#OnCitasEditClick" text="Editar cita" />
+      <Button layoutX="344.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCitasAddClick" text="Añadir Cita" />
+      <Button layoutX="998.0" layoutY="333.0" mnemonicParsing="false" onAction="#onCitasDeleteClick" text="Borrar Cita" />
+      <Button layoutX="642.0" layoutY="333.0" mnemonicParsing="false" onAction="#OnCitasEditClick" text="Editar cita" />
    </children>
 </AnchorPane>

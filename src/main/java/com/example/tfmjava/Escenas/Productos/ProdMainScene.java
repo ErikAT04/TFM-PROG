@@ -38,19 +38,27 @@ public class ProdMainScene implements Initializable {
     @FXML
     private TableColumn colStock;
     @FXML
-    public void onProductoAddClick(ActionEvent actionEvent) {
+    public void onProductoAddClick(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
+        tableRefresh();
     }
     @FXML
     public void onProductoEditClick(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Borrar producto");
+        alert.setTitle("Actualizar producto");
         Producto producto = tablaProducto.getSelectionModel().getSelectedItem();
         if (producto==null){
             alert.setContentText("No se ha seleccionado ningún producto.");
             alert.showAndWait();
         } else {
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductosSubMain.fxml"));
-            Scene scene = loader.load();
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
+            Scene scene = new Scene(loader.load());
+            ProdSubScene controller = loader.getController();
+            controller.toEdit(producto);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.showAndWait();
@@ -66,8 +74,8 @@ public class ProdMainScene implements Initializable {
             alert.setContentText("No se ha seleccionado ningún producto.");
             alert.showAndWait();
         } else {
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductosSubMain.fxml"));
-            Scene scene = loader.load();
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
+            Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.showAndWait();

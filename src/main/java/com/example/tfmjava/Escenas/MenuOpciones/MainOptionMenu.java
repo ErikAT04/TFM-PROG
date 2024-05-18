@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -101,6 +102,8 @@ public class MainOptionMenu {
     @FXML
     void onPassChangeClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.getIcons().add(img);
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
@@ -110,6 +113,8 @@ public class MainOptionMenu {
     @FXML
     void onUnameChangeClick(ActionEvent event) throws IOException{
         Stage stage = new Stage();
+        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.getIcons().add(img);
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);

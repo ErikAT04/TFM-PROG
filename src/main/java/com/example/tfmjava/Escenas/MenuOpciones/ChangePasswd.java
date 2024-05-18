@@ -38,8 +38,10 @@ public class ChangePasswd {
             alert.setContentText("Alguno de los campos está vacío");
         } else if (!newPassTField.getText().equals(newPassConfirmTField.getText())){
             alert.setContentText("Las contraseñas no coinciden");
-        } else if (!newPassTField.getText().equals(DataBaseManager.password)){
+        } else if (!newPassTField.getText().equals(DataBaseManager.password)) {
             alert.setContentText("La contraseña original no es correcta");
+        } else if (!Validator.validarPasswd(newPassTField.getText())){
+            alert.setContentText("La contraseña no cumple el criterio esperado.");
         } else {
             String newPass = newPassTField.getText();
             Usuario usuario = UsuarioDAO.userForLogin(DataBaseManager.username);
@@ -72,7 +74,7 @@ public class ChangePasswd {
             passLabel.setTextFill(Color.RED);
         }
     }
-
+    @FXML
     public void onInfoIMGView(MouseEvent mouseEvent) {
         Validator.mostrarInfoPasswd();
     }

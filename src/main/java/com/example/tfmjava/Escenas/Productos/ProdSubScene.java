@@ -19,6 +19,7 @@ public class ProdSubScene {
     private Button sendBtt;
     Producto prevProd;
     boolean editar = false;
+    @FXML
     public void onSendClick(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         String accion = (editar)? " editado " : " añadido ";

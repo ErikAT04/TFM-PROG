@@ -49,6 +49,14 @@ public class ChangeUname {
             }
         }
     }
+    @FXML
+    public void onPasswdInfoIMGClick(){
+        Validator.mostrarInfoPasswd();
+    }
+    @FXML
+    public void onUnameInfoIMGClick(){
+
+    }
 
 }
 

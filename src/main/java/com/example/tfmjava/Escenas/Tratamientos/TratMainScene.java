@@ -11,11 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.controlsfx.validation.ValidateEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,23 +60,54 @@ public class TratMainScene implements Initializable {
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.showAndWait();
+        refreshTable();
     }
 
     @FXML
     void onTratamientoDelClick(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Tratamientos");
+        alert.setHeaderText(null);
+        Tratamiento tratamiento = tablaTratamientos.getSelectionModel().getSelectedItem();
+        if (tratamiento==null){
+            alert.setContentText("No se ha seleccionado ningún tratamiento");
+        } else {
+            int numFilas = TratamientoDAO.reiniciarProductosDeTratamientos(tratamiento.getCod_trat());
+            if (numFilas>0){
+                numFilas = TratamientoDAO.borrarTratamiento(tratamiento.getCod_trat());
+                if (numFilas==1){
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Tratamiento eliminado correctamente");
+                } else {
+                    alert.setContentText("Error al borrar tratamientos");
+                }
+            } else {
+                alert.setContentText("Error al borrar los productos del tratamiento");
+            }
+        }
+        alert.showAndWait();
+        refreshTable();
     }
 
     @FXML
     void onTratamientoEditClick(ActionEvent event) throws IOException {
         Tratamiento tratamiento = tablaTratamientos.getSelectionModel().getSelectedItem();
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
-        Scene scene = new Scene(loader.load());
-        TratSubScene controller = loader.getController();
-        controller.toEdit(tratamiento);
-        stage.setScene(scene);
-        stage.showAndWait();
+        if (tratamiento==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Tratamientos");
+            alert.setContentText("No se ha seleccionado ningún tratamiento");
+            alert.showAndWait();
+        } else {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
+            Scene scene = new Scene(loader.load());
+            TratSubScene controller = loader.getController();
+            controller.toEdit(tratamiento);
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+        refreshTable();
     }
 
     @Override

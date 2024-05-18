@@ -9,7 +9,7 @@
     <li>Manipulación de Datos en una base de datos (JDBC, utilizando MySQL Server)</li>
   </ul>
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando
-</p>
+
   <p style="text-align: center;">Progreso actual del proyecto:<br>
     28/33 clases completadas<br>
     10/17 escenas hechas
@@ -26,7 +26,7 @@
     <li>La segunda se encarga de lo que es la base de datos principal, guardando información de clientes, tratamientos, etcétera</li>
   </ul>
 </ol>
-<img src="presentacion/BBDD.png" style="width=40%">
+<img src="presentacion/BBDD.png" style="width=40%" alt="">
 
 ### 2. Clases normales
 <ol>
