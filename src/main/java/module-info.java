@@ -1,10 +1,9 @@
 module com.example.tfmjava {
     requires javafx.controls;
     requires javafx.fxml;
-
-    requires org.controlsfx.controls;
     requires java.sql;
     requires java.desktop;
+    requires org.controlsfx.controls;
 
     opens com.example.tfmjava to javafx.fxml, javafx.base;
     opens com.example.tfmjava.Escenas.LogInSignUp to javafx.fxml;

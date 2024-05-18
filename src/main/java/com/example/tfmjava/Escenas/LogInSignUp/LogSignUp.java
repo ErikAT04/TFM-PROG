@@ -38,7 +38,7 @@ public class LogSignUp {
         Scene scene = new Scene(fxmlLoader.load());
         LogInOpt controller = fxmlLoader.getController();
         Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
-        Image img = escenarioActual.getIcons().get(0);
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");
@@ -52,7 +52,7 @@ public class LogSignUp {
         Scene scene = new Scene(fxmlLoader.load());
         SignUpOpt controller = fxmlLoader.getController();
         Stage escenarioActual = (Stage) this.loginBT.getScene().getWindow();
-        Image img = escenarioActual.getIcons().get(0);
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
         stage.setTitle("Iniciar Sesión");

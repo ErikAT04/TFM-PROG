@@ -46,6 +46,7 @@ public class TratSubScene implements Initializable {
     private Button sendBtt;
     HashMap<String, Producto> prodMap;
     Boolean edit = false;
+    Tratamiento prevTratamiento;
 
     @FXML
     void onSendClick(ActionEvent event) {
@@ -54,7 +55,7 @@ public class TratSubScene implements Initializable {
         alert.setTitle("Tratamientos");
         String accion = (edit) ? " editado " : " añadido ";
         int numFilas = 0;
-        if (PrecioTField.getText().isEmpty() || descTextArea.getText().isEmpty() || duracionTField.getText().isEmpty() || nombreTField.getText().isEmpty() || prodComBox.getCheckModel().isEmpty()) {
+        if (PrecioTField.getText().isEmpty() || descTextArea.getText().isEmpty() || duracionTField.getText().isEmpty() || nombreTField.getText().isEmpty()) {
             alert.setContentText("Alguno de los campos está vacío");
         } else {
             try {
@@ -71,15 +72,16 @@ public class TratSubScene implements Initializable {
                     productosChecked.add(producto);
                 }
                 if (edit) {
+                    tratamiento.setCod_trat(prevTratamiento.getCod_trat());
                     TratamientoDAO.reiniciarProductosDeTratamientos(tratamiento.getCod_trat());
                     numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
-                    if (numFilas > 0) {
+                    if (numFilas >= 0) {
                         numFilas = TratamientoDAO.actualizarTratamiento(tratamiento);
                     }
 
                 } else {
                     numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
-                    if (numFilas > 0) {
+                    if (numFilas >= 0) {
                         numFilas = TratamientoDAO.addTratamiento(tratamiento);
                     }
                 }
@@ -99,8 +101,10 @@ public class TratSubScene implements Initializable {
     }
     void toEdit(Tratamiento trat){
         edit=true;
+        this.prevTratamiento = trat;
         descTextArea.setText(trat.getDescripcion());
         duracionTField.setText(String.valueOf(trat.getDuracion_media_horas()));
+        PrecioTField.setText(String.valueOf(trat.getPrecio()));
         nombreTField.setText(trat.getNombre());
 
         IndexedCheckModel<String> modelo = prodComBox.getCheckModel();
@@ -123,10 +127,6 @@ public class TratSubScene implements Initializable {
         prodComBox.getItems().addAll(productoNombre);
     }
 
-    /*
-    nombre VARCHAR(40) NOT NULL,
-    descripcion VARCHAR(250) NOT NULL,
-     */
     @FXML
     void onDescType(KeyEvent event) {
         int num = descTextArea.getText().length(); //Esto guarda la longitud
@@ -152,6 +152,6 @@ public class TratSubScene implements Initializable {
     }else {
         nombreContador.setTextFill(Color.GREY);
     }
-        nombreTField.setText(num + "/40");
+        nombreContador.setText(num + "/40");
     }
 }

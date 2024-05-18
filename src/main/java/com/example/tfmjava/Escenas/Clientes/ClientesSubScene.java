@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.controlsfx.validation.ValidateEvent;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

@@ -18,7 +18,7 @@
       <TextField fx:id="nombreTField" layoutX="181.0" layoutY="50.0" onKeyTyped="#onNameType" />
       <TextField fx:id="PrecioTField" layoutX="181.0" layoutY="87.0" />
       <TextField fx:id="duracionTField" layoutX="181.0" layoutY="124.0" />
-      <CheckComboBox layoutX="181.0" layoutY="161.0" prefWidth="150.0" />
+      <CheckComboBox fx:id="prodComBox" layoutX="181.0" layoutY="161.0" prefWidth="150.0" />
       <Button fx:id="sendBtt" layoutX="179.0" layoutY="361.0" mnemonicParsing="false" onAction="#onSendClick" text="Añadir" />
       <Label fx:id="descLabel" layoutX="91.0" layoutY="209.0" text="0/250" />
       <Label fx:id="nombreContador" layoutX="339.0" layoutY="54.0" text="0/40" />

@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DataBaseManager{
     public static String username;
     public static String password;
-    public static String path = "jdbc:mysql://localhost:3306/";
+    public static String path = "jdbc:mysql://83.53.117.100:3306/";
     public static String dbName;
 
     public static Connection getConnection(){

@@ -47,7 +47,7 @@ public class Validator {
         if (pass.length() < 8 || pass.length() > 30){
             return false;
         } else {
-            return !(pass.matches("[;,*`^]"));
+            return !(pass.matches(".*\\W.*"));
         }
     }
     public static void mostrarInfoUname(){

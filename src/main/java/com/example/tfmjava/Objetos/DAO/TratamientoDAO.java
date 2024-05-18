@@ -61,7 +61,7 @@ public class TratamientoDAO {
     }
     public static int borrarTratamiento(int COD_TRAT){
         String sql = "DELETE FROM TRATAMIENTO WHERE COD_TRAT = ?";
-        String sqlDeleteCita = "DELETE FROM CITAS WHERE TRATAMIENTO = ?";
+        String sqlDeleteCita = "DELETE FROM CITA WHERE TRATAMIENTO = ?";
         String sqlDeleteRel = "DELETE FROM PRODUCTO_TRATAMIENTO WHERE COD_TRATAMIENTO = ?";
         int numFilas = 0;
         try(Connection con = DataBaseManager.getConnection()){
@@ -90,7 +90,7 @@ public class TratamientoDAO {
     */
     public static int actualizarTratamiento(Tratamiento tratamiento){
         int numFilas=0;
-        String sql = "UPDATE TRATAMIENTO SET nombre = ?, descripcion = ?, precio = ?, duracion_media_horas = ? WHERE COD_TRAT = ?) ";
+        String sql = "UPDATE TRATAMIENTO SET nombre = ?, descripcion = ?, precio = ?, duracion_media_horas = ? WHERE COD_TRAT = ?";
         try(Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, tratamiento.getNombre());
@@ -107,7 +107,7 @@ public class TratamientoDAO {
     public static ArrayList<Producto> listarProductosDeTratamiento (Tratamiento tratamiento){
         ArrayList<Producto> productos = new ArrayList<>();
         try(Connection con = DataBaseManager.getConnection()){
-            String sql = "select * from producto where cod_prod = ANY (SELECT cod_producto FROM producto_tratamiento WHERE COD_TRAT = ?);";
+            String sql = "select * from producto where cod_prod = ANY (SELECT cod_producto FROM producto_tratamiento WHERE cod_tratamiento = ?);";
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setInt(1, tratamiento.getCod_trat());
             ResultSet resultado = sentencia.executeQuery();
@@ -119,7 +119,9 @@ public class TratamientoDAO {
                 Producto prod = new Producto(cod_prod, stock, nombre, marca);
                 productos.add(prod);
             }
-        }catch (SQLException e){}
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
         return productos;
     }
 
@@ -173,6 +175,7 @@ public class TratamientoDAO {
                 numFilas++;
             }
         }catch (SQLException e){
+            System.out.println(e.getMessage());
         }
         return numFilas;
     }

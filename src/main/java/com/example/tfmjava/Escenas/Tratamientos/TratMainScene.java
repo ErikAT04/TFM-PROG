@@ -18,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.controlsfx.validation.ValidateEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -78,7 +77,7 @@ public class TratMainScene implements Initializable {
             alert.setContentText("No se ha seleccionado ningún tratamiento");
         } else {
             int numFilas = TratamientoDAO.reiniciarProductosDeTratamientos(tratamiento.getCod_trat());
-            if (numFilas>0){
+            if (numFilas>=0){
                 numFilas = TratamientoDAO.borrarTratamiento(tratamiento.getCod_trat());
                 if (numFilas==1){
                     alert.setAlertType(Alert.AlertType.INFORMATION);
