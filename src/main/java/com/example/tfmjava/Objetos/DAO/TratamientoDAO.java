@@ -61,11 +61,20 @@ public class TratamientoDAO {
     }
     public static int borrarTratamiento(int COD_TRAT){
         String sql = "DELETE FROM TRATAMIENTO WHERE COD_TRAT = ?";
+        String sqlDeleteCita = "DELETE FROM CITAS WHERE TRATAMIENTO = ?";
+        String sqlDeleteRel = "DELETE FROM PRODUCTO_TRATAMIENTO WHERE COD_TRATAMIENTO = ?";
         int numFilas = 0;
         try(Connection con = DataBaseManager.getConnection()){
-            PreparedStatement sentencia = con.prepareStatement(sql);
+            PreparedStatement sentencia = con.prepareStatement(sqlDeleteRel);
             sentencia.setInt(1, COD_TRAT);
+            sentencia.executeUpdate();
 
+            sentencia = con.prepareStatement(sqlDeleteCita);
+            sentencia.setInt(1, COD_TRAT);
+            sentencia.executeUpdate();
+
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, COD_TRAT);
             numFilas=sentencia.executeUpdate();
         }catch (SQLException e){
             System.out.println("Error " + e);

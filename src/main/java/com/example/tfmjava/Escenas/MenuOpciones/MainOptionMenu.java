@@ -102,17 +102,19 @@ public class MainOptionMenu {
     @FXML
     void onPassChangeClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        stage.setTitle("Cambiar contraseña");
         Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
         stage.getIcons().add(img);
-        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));
+        FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangePasswd.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setTitle("Cambio de nombre de usuario");
+        stage.setTitle("Cambio de contraseña");
         stage.showAndWait();
     }
     @FXML
     void onUnameChangeClick(ActionEvent event) throws IOException{
         Stage stage = new Stage();
+        stage.setTitle("Cambiar nombre de usuario");
         Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
         stage.getIcons().add(img);
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/ChangeUname.fxml"));

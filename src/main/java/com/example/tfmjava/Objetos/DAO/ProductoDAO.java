@@ -70,11 +70,15 @@ public class ProductoDAO {
     }
     public static int borrarProducto(int cod_prod){
         String sql = "DELETE FROM PRODUCTO WHERE cod_prod = ?";
+        String sqlDeleteRel = "DELETE FROM PRODUCTO_TRATAMIENTO WHERE COD_PRODUCTO = ?";
         int numFilas = 0;
         try(Connection con = DataBaseManager.getConnection()){
-            PreparedStatement sentencia = con.prepareStatement(sql);
+            PreparedStatement sentencia = con.prepareStatement(sqlDeleteRel);
             sentencia.setInt(1, cod_prod);
+            sentencia.executeUpdate();
 
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, cod_prod);
             numFilas=sentencia.executeUpdate();
         }catch (SQLException e){
             System.out.println("Error " + e);

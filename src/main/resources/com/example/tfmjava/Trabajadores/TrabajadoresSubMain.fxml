@@ -5,18 +5,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <?import org.controlsfx.control.CheckComboBox?>
-<AnchorPane prefHeight="236.0" prefWidth="342.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Trabajadores.TrabajadoresSubScene">
+<AnchorPane prefHeight="236.0" prefWidth="429.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Trabajadores.TrabajadoresSubScene">
    <children>
       <Label layoutX="145.0" layoutY="33.0" text="DNI:" />
       <Label layoutX="122.0" layoutY="70.0" text="Nombre:" />
       <Label layoutX="117.0" layoutY="107.0" text="Apellidos:" />
       <Label layoutX="22.0" layoutY="144.0" text="Selecciona qué días trabaja:" />
       <CheckComboBox fx:id="horarioComBox" layoutX="170.0" layoutY="140.0" prefWidth="150.0" />
-      <TextField fx:id="apellidoTField" layoutX="171.0" layoutY="103.0" />
-      <TextField fx:id="nombreTField" layoutX="171.0" layoutY="66.0" />
-      <TextField fx:id="dniTField" layoutX="171.0" layoutY="29.0" />
+      <TextField fx:id="apellidoTField" layoutX="171.0" layoutY="103.0" onKeyTyped="#onApellidoType" />
+      <TextField fx:id="nombreTField" layoutX="171.0" layoutY="66.0" onKeyTyped="#onNombreType" />
+      <TextField fx:id="dniTField" layoutX="171.0" layoutY="29.0" onKeyTyped="#onDNIType" />
       <Button fx:id="sendBtt" layoutX="146.0" layoutY="189.0" mnemonicParsing="false" onAction="#onSendBtt" text="Añadir" />
+      <Label fx:id="dniContador" layoutX="330.0" layoutY="33.0" text="0/9" />
+      <Label fx:id="nombreContador" layoutX="327.0" layoutY="70.0" text="0/20" />
+      <Label fx:id="apellContador" layoutX="327.0" layoutY="107.0" text="0/50" />
    </children>
 </AnchorPane>

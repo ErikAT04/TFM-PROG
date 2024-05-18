@@ -147,13 +147,20 @@ public class UsuarioDAO {
 
     public static int updateUser(Usuario usuario) {
         int numFilas = 0;
-        String sql = "UPDATE USUARIO SET UNAME = ?, PASSWD = ? WHERE ID = ?";
+        String sql = "UPDATE USERS.USUARIO SET UNAME = ?, PASSWD = ? WHERE ID = ?";
+        String sqlUser = "RENAME USER ? TO ?";
         try(Connection con = conectarSignUp()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, usuario.getUname());
             sentencia.setString(2, usuario.getPasswd());
             sentencia.setInt(3, usuario.getId());
             numFilas = sentencia.executeUpdate();
+
+            sentencia = con.prepareStatement(sqlUser);
+            sentencia.setString(1, DataBaseManager.username);
+            sentencia.setString(2, usuario.getUname());
+            sentencia.executeUpdate();
+
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }

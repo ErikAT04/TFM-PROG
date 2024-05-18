@@ -7,27 +7,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="190.0" prefWidth="371.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.ChangeUname">
+<?import javafx.scene.control.PasswordField?>
+<AnchorPane prefHeight="190.0" prefWidth="420.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.MenuOpciones.ChangeUname">
    <children>
       <Button layoutX="193.0" layoutY="128.0" mnemonicParsing="false" onAction="#onChangeField" text="Solicitar Cambio" />
       <Label layoutX="16.0" layoutY="37.0" text="Nuevo nombre de usuario:" />
       <Label layoutX="94.0" layoutY="74.0" text="Contraseña:" />
-      <TextField fx:id="unameTField" layoutX="169.0" layoutY="33.0" />
-      <TextField fx:id="passwdField" accessibleRole="PASSWORD_FIELD" layoutX="170.0" layoutY="70.0" />
+      <TextField fx:id="unameTField" layoutX="169.0" layoutY="33.0" onKeyTyped="#onUnameType" />
+      <PasswordField fx:id="passwdField" layoutX="170.0" layoutY="70.0" onKeyTyped="#onPassType" />
       <ImageView fitHeight="99.0" fitWidth="103.0" layoutX="16.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/user_icon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="319.0" layoutY="30.0" onMouseClicked="#onUnameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="350.0" layoutY="30.0" onMouseClicked="#onUnameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="319.0" layoutY="67.0" onMouseClicked="#onPasswdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="350.0" layoutY="67.0" onMouseClicked="#onPasswdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>
       </ImageView>
+      <Label fx:id="unameContador" layoutX="325.0" layoutY="37.0" text="0/30" />
+      <Label fx:id="passContador" layoutX="325.0" layoutY="74.0" text="0/30" />
    </children>
 </AnchorPane>

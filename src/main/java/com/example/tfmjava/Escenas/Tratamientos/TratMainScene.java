@@ -16,12 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.controlsfx.validation.ValidateEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TratMainScene implements Initializable {
@@ -56,6 +58,9 @@ public class TratMainScene implements Initializable {
     @FXML
     void onTratamientoAddClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();
+        stage.setTitle("HerToq - Creación de Tratamientos");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+        stage.getIcons().add(img);
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
@@ -100,6 +105,9 @@ public class TratMainScene implements Initializable {
             alert.showAndWait();
         } else {
             Stage stage = new Stage();
+            stage.setTitle("HerToq - Edición de Tratamientos");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+            stage.getIcons().add(img);
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
             Scene scene = new Scene(loader.load());
             TratSubScene controller = loader.getController();

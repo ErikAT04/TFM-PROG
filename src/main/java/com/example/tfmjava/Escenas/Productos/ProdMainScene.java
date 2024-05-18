@@ -15,11 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ProdMainScene implements Initializable {
@@ -42,6 +44,9 @@ public class ProdMainScene implements Initializable {
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
+        stage.setTitle("HerToq - Creación de Productos");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
         tableRefresh();
@@ -60,6 +65,9 @@ public class ProdMainScene implements Initializable {
             ProdSubScene controller = loader.getController();
             controller.toEdit(producto);
             Stage stage = new Stage();
+            stage.setTitle("HerToq - Edición de Productos");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+            stage.getIcons().add(img);
             stage.setScene(scene);
             stage.showAndWait();
         }
@@ -69,17 +77,19 @@ public class ProdMainScene implements Initializable {
     public void onProductoDelClick(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Borrar producto");
+        alert.setHeaderText(null);
         Producto producto = tablaProducto.getSelectionModel().getSelectedItem();
         if (producto==null){
             alert.setContentText("No se ha seleccionado ningún producto.");
             alert.showAndWait();
         } else {
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.showAndWait();
+            int numFilas = ProductoDAO.borrarProducto(producto.getCod_prod());
+            if (numFilas==1){
+                alert.setContentText("Borrado correctamente");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+            }
         }
+        alert.showAndWait();
         tableRefresh();
     }
     @FXML

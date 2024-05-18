@@ -28,6 +28,14 @@ public class ChangePasswd {
     private PasswordField thisPassTField;
     @FXML
     private Label passLabel;
+    @FXML
+    private Label repeatNewPassContador;
+
+    @FXML
+    private Label oldPasContador;
+    @FXML
+    private Label newPassContador;
+
 
     @FXML
     void onChangePasswordField(ActionEvent event) {
@@ -77,5 +85,33 @@ public class ChangePasswd {
     @FXML
     public void onInfoIMGView(MouseEvent mouseEvent) {
         Validator.mostrarInfoPasswd();
+    }
+    @FXML
+    void onThisPassTyped(KeyEvent event) {
+        int num = thisPassTField.getText().length();
+        if (num>30){
+            thisPassTField.setText(thisPassTField.getText().substring(0, 29));
+            num = thisPassTField.getText().length();
+        }
+        oldPasContador.setText(num + "/30");
+        if (num == 30){
+            oldPasContador.setTextFill(Color.RED);
+        } else  {
+            oldPasContador.setTextFill(Color.GREY);
+        }
+    }
+    @FXML
+    void onNewPassType(KeyEvent event) {
+        int num = newPassTField.getText().length();
+        if (num>30){
+            newPassTField.setText(newPassTField.getText().substring(0, 29));
+            num = newPassTField.getText().length();
+        }
+        newPassContador.setText(num + "/30");
+        if (num == 30){
+            newPassContador.setTextFill(Color.RED);
+        } else  {
+            newPassContador.setTextFill(Color.GREY);
+        }
     }
 }

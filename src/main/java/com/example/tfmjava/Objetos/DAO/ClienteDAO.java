@@ -65,11 +65,14 @@ public class ClienteDAO {
     }
     public static int borrarCliente(String dni){
         String sql = "DELETE FROM CLIENTE WHERE DNI = ?";
+        String sqlDeleteCita = "DELETE FROM CITA WHERE clientePedido = ?";
         int numFilas = 0;
         try(Connection con = DataBaseManager.getConnection()){
-            PreparedStatement sentencia = con.prepareStatement(sql);
+            PreparedStatement sentencia = con.prepareStatement(sqlDeleteCita);
             sentencia.setString(1, dni);
-
+            sentencia.executeUpdate();
+            sentencia = con.prepareStatement(sql);
+            sentencia.setString(1, dni);
             numFilas=sentencia.executeUpdate();
         }catch (SQLException e){}
         return numFilas;

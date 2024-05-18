@@ -54,9 +54,14 @@ public class TrabajadorDAO {
     }
     public static int borrarTrabajador(int COD_TRABAJADOR){
         String sql = "DELETE FROM TRABAJADOR WHERE COD_TRABAJADOR = ?";
+        String sqlDeleteCita = "DELETE FROM CITA WHERE trabajadorEncargado = ?";
         int numFilas = 0;
         try(Connection con = DataBaseManager.getConnection()){
-            PreparedStatement sentencia = con.prepareStatement(sql);
+            PreparedStatement sentencia = con.prepareStatement(sqlDeleteCita);
+            sentencia.setInt(1, COD_TRABAJADOR);
+            sentencia.executeUpdate();
+
+            sentencia = con.prepareStatement(sql);
             sentencia.setInt(1, COD_TRABAJADOR);
 
             numFilas=sentencia.executeUpdate();
@@ -67,7 +72,7 @@ public class TrabajadorDAO {
     }
     public static int actualizarTrabajador(Trabajador trabajador){
         int numFilas=0;
-        String sql = "UPDATE TRABAJADOR SET dni = ?, nombre = ?, apellidos = ?, horario = ? WHERE COD_TRABAJADOR = ?) ";
+        String sql = "UPDATE TRABAJADOR SET dni = ?, nombre = ?, apellidos = ?, horario = ? WHERE COD_TRABAJADOR = ?";
         try(Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, trabajador.getDni());

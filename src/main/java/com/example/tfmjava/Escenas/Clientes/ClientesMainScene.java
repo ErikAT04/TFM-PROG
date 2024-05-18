@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ClientesMainScene implements Initializable {
@@ -41,7 +42,8 @@ public class ClientesMainScene implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
         Scene scene = new Scene(loader.load());
-        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.setTitle("HerToq - Creación de Clientes");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
@@ -58,7 +60,8 @@ public class ClientesMainScene implements Initializable {
             alert.showAndWait();
         }else {
             Stage stage = new Stage();
-            Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+            stage.setTitle("HerToq - Edición de Clientes");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
             Scene scene = new Scene(loader.load());

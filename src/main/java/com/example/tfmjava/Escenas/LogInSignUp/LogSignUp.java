@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class LogSignUp {
@@ -109,6 +110,9 @@ public class LogSignUp {
                 con.close();
 
                 Stage stage = (Stage) this.loginBT.getScene().getWindow();
+                stage.setTitle("HerToq - Menú Principal");
+                Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+                stage.getIcons().add(img);
                 FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("MainView.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
@@ -129,6 +133,9 @@ public class LogSignUp {
             DataBaseManager.password = "PRU3B4";
             DataBaseManager.dbName = "dummybbdd";
             Stage stage = (Stage) this.loginBT.getScene().getWindow();
+            stage.setTitle("HerToq - Menú principal");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+            stage.getIcons().add(img);
             FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("MainView.fxml"));
             Scene scene = null;
             try {

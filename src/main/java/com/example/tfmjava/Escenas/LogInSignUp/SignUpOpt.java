@@ -4,14 +4,16 @@ import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.LogInSignUp.Usuario;
 import com.example.tfmjava.Objetos.LogInSignUp.UsuarioDAO;
 import com.example.tfmjava.Objetos.util.DataBaseManager;
+import com.example.tfmjava.Objetos.util.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class SignUpOpt {
@@ -29,6 +31,12 @@ public class SignUpOpt {
     private TextField unameRegister;
     @FXML
     private CheckBox acceptCB;
+
+    @FXML
+    private Label passwdContador;
+
+    @FXML
+    private Label unameContador;
 
     Stage escenario;
 
@@ -72,18 +80,22 @@ public class SignUpOpt {
                     alert.setContentText("Ya existe un usuario con ese nombre\nUtilice otro nombre");
                     alert.showAndWait();
                 } else {
-                    UsuarioDAO.register(new Usuario(uname, passwd));
-                    DataBaseManager.firstConnection();
-                    alert.setAlertType(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Conexión creada");
-                    alert.setContentText("Bienvenido a su nueva base de datos, " + DataBaseManager.username);
+                    if (!Validator.validarPasswd(passwd) || !Validator.validarUname(uname)){
+                        alert.setContentText("La contraseña o el nombre de usuario no siguen los criterios esperados");
+                    } else {
+                        UsuarioDAO.register(new Usuario(uname, passwd));
+                        DataBaseManager.firstConnection();
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Conexión creada");
+                        alert.setContentText("Bienvenido a su nueva base de datos, " + DataBaseManager.username);
 
-                    Stage escena = (Stage) this.acceptCB.getScene().getWindow();
-                    escena.close();
-                    try {
-                        cambioEscenaAMain();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        Stage escena = (Stage) this.acceptCB.getScene().getWindow();
+                        escena.close();
+                        try {
+                            cambioEscenaAMain();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
@@ -91,7 +103,6 @@ public class SignUpOpt {
         alert.showAndWait();
     }
     public boolean existsInDB(String uname){
-        Boolean bool;
         Usuario u = UsuarioDAO.userForLogin(uname);
         return u!=null;
     }
@@ -103,6 +114,44 @@ public class SignUpOpt {
         Scene scene = new Scene(fxmlLoader.load());
         this.escenario.setScene(scene);
         this.escenario.show();
+    }
+
+    @FXML
+    void onUnameInfoIIMGClick(MouseEvent event) {
+        Validator.mostrarInfoUname();
+    }
+
+    @FXML
+    void onUnameType(KeyEvent event) {
+        int num = unameRegister.getText().length();
+        if (num>30){
+            unameRegister.setText(unameRegister.getText().substring(0, 29));
+        }
+        unameContador.setText(num + "/30");
+        if (num == 30){
+            unameContador.setTextFill(Color.RED);
+        } else  {
+            unameContador.setTextFill(Color.GREY);
+        }
+    }
+
+    @FXML
+    void onPasswdInfoIMGClick(MouseEvent event) {
+        Validator.mostrarInfoPasswd();
+    }
+
+    @FXML
+    void onPasswdType(KeyEvent event) {
+        int num = passRegister.getText().length();
+        if (num>30){
+            passRegister.setText(passRegister.getText().substring(0, 29));
+        }
+        if (num == 30){
+            passwdContador.setTextFill(Color.RED);
+        } else  {
+            passwdContador.setTextFill(Color.GREY);
+        }
+        passwdContador.setText(num + "/30");
     }
 }
 

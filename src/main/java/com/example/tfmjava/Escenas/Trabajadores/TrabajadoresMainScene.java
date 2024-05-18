@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TrabajadoresMainScene implements Initializable {
@@ -56,6 +58,9 @@ public class TrabajadoresMainScene implements Initializable {
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Trabajadores/TrabajadoresSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
+        stage.setTitle("HerToq - Creación de trabajadores");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
     }
@@ -92,6 +97,9 @@ public class TrabajadoresMainScene implements Initializable {
             TrabajadoresSubScene controller = loader.getController();
             controller.toEdit(trabajador);
             Stage stage = new Stage();
+            stage.setTitle("HerToq - Edición de Trabajadores");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+            stage.getIcons().add(img);
             stage.setScene(scene);
             stage.showAndWait();
 

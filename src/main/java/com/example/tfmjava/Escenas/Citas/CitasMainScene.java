@@ -3,13 +3,9 @@ package com.example.tfmjava.Escenas.Citas;
 import com.example.tfmjava.InitApplication;
 import com.example.tfmjava.Objetos.Cita;
 import com.example.tfmjava.Objetos.DAO.CitaDAO;
-import com.example.tfmjava.Objetos.Persona;
-import com.example.tfmjava.Objetos.util.DataBaseManager;
-import javafx.beans.Observable;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,14 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CitasMainScene implements Initializable {
@@ -39,16 +33,18 @@ public class CitasMainScene implements Initializable {
     @FXML
     public TableColumn<String[], String> colObservaciones;
     @FXML
-    public TableColumn<String[], String> colFechaHora;
+    public TableColumn<String[], String> colFecha;
+    @FXML
+    public TableColumn<String[], String> colHora;
     @FXML
     public TableView<String[]> tablaCita;
     @FXML
-    void onCitasAddClick(ActionEvent event) throws IOException{
+    void onCitasAddClick() throws IOException{
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Citas/CitaSubMain.fxml"));
         Scene scene = new Scene(loader.load());
-        CitasSubScene controller = loader.getController();
         Stage stage = new Stage();
-        Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+        stage.setTitle("HerToq - Creación de Citas");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
@@ -56,7 +52,7 @@ public class CitasMainScene implements Initializable {
     }
 
     @FXML
-    void onCitasDeleteClick(ActionEvent event) {
+    void onCitasDeleteClick() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de borrado");
         alert.setHeaderText(null);
@@ -77,7 +73,7 @@ public class CitasMainScene implements Initializable {
         refreshTable();
     }
     @FXML
-    public void OnCitasEditClick(ActionEvent event) throws IOException {
+    public void OnCitasEditClick() throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error de actualización");
         alert.setHeaderText(null);
@@ -92,7 +88,8 @@ public class CitasMainScene implements Initializable {
             CitasSubScene controller = loader.getController();
             controller.toEdit(cita);
             Stage stage = new Stage();
-            Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
+            stage.setTitle("HerToq - Edición de Citas");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             stage.setScene(scene);
             stage.showAndWait();
@@ -104,11 +101,12 @@ public class CitasMainScene implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         colCodCita.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[0]));
-        colFechaHora.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[1]));
+        colFecha.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[1]));
         colObservaciones.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[2]));
         colTratamiento.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[3]));
         colTrabajadorEncargado.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[4]));
         colClientePedido.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[5]));
+        colHora.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()[6]));
 
         refreshTable();
     }

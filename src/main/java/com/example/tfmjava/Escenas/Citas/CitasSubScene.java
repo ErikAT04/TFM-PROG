@@ -8,16 +8,18 @@ import com.example.tfmjava.Objetos.DAO.TrabajadorDAO;
 import com.example.tfmjava.Objetos.DAO.TratamientoDAO;
 import com.example.tfmjava.Objetos.Trabajador;
 import com.example.tfmjava.Objetos.Tratamiento;
+import com.example.tfmjava.Objetos.util.Validator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -34,6 +36,9 @@ public class CitasSubScene implements Initializable {
     private TextField selectorHora;
     @FXML
     private ComboBox<String> tratamientoComboBox;
+
+    @FXML
+    private ComboBox<String> horas;
     @FXML
     private Button sendBtt;
 
@@ -44,14 +49,17 @@ public class CitasSubScene implements Initializable {
     Cita citaPrevia;
 
     @FXML
-    private void onActionButton(){
+    private Label obserLabel;
+
+    @FXML
+    private void onActionButton() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Error de acción");
         int numFilas;
         Stage stage = (Stage) this.clienteComboBox.getScene().getWindow();
 
-        if (observarTextArea.getText().isEmpty() || clienteComboBox.getValue().isEmpty() || trabajadorComboBox.getValue().isEmpty() || tratamientoComboBox.getValue().isEmpty()){
+        if (observarTextArea.getText().isEmpty() || clienteComboBox.getValue().isEmpty() || trabajadorComboBox.getValue().isEmpty() || tratamientoComboBox.getValue().isEmpty() || horas.getValue() == null) {
             alert.setContentText("No se han seleccionado todos los valores.");
         } else {
             String observaciones = observarTextArea.getText();
@@ -59,38 +67,34 @@ public class CitasSubScene implements Initializable {
             Trabajador trabajador = trabajadorHashMap.get(trabajadorComboBox.getValue());
             Tratamiento tratamiento = tratamientoHashMap.get(tratamientoComboBox.getValue());
             LocalDate fecha = selectorFecha.getValue();
-            String hora = selectorHora.getText();
-            if (true){
-
-            } else {
-                Cita cita = new Cita(fecha, observaciones, trabajador, tratamiento, cliente);
-                if (editar) {
-                    cita.setCod_cita(citaPrevia.getCod_cita());
-                    if (CitaDAO.otherFechaHora(cita)) {
-                        alert.setContentText("Ya hay una cita en ese momento con este trabajador");
-                    } else {
-                        numFilas = CitaDAO.actualizarCita(cita);
-                        if (numFilas == 1) {
-                            alert.setAlertType(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Actualización");
-                            alert.setContentText("Actualización de la cita realizada correctamente");
-                            stage.close();
-                        }
-                    }
+            Time hora = Time.valueOf(horas.getValue() + ":00");
+            Cita cita = new Cita(fecha, hora, observaciones, trabajador, tratamiento, cliente);
+            if (editar) {
+                cita.setCod_cita(citaPrevia.getCod_cita());
+                if (CitaDAO.otherFechaHora(cita)) {
+                    alert.setContentText("Ya hay una cita en ese momento con este trabajador");
                 } else {
-                    cita.setCod_cita(0);
-                    if (CitaDAO.otherFechaHora(cita)) {
-                        alert.setContentText("Ya hay una cita en ese momento con este trabajador");
+                    numFilas = CitaDAO.actualizarCita(cita);
+                    if (numFilas == 1) {
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Actualización");
+                        alert.setContentText("Actualización de la cita realizada correctamente");
+                        stage.close();
+                    }
+                }
+            } else {
+                cita.setCod_cita(0);
+                if (CitaDAO.otherFechaHora(cita)) {
+                    alert.setContentText("Ya hay una cita en ese momento con este trabajador");
+                } else {
+                    numFilas = CitaDAO.addCita(cita);
+                    if (numFilas == 1) {
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Añadir cita");
+                        alert.setContentText("Inserción de nueva cita correctamente");
+                        stage.close();
                     } else {
-                        numFilas = CitaDAO.addCita(cita);
-                        if (numFilas == 1) {
-                            alert.setAlertType(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Añadir cita");
-                            alert.setContentText("Inserción de nueva cita correctamente");
-                            stage.close();
-                        } else {
-                            alert.setContentText("Hubo un error añadiendo la cita");
-                        }
+                        alert.setContentText("Hubo un error añadiendo la cita");
                     }
                 }
             }
@@ -130,6 +134,14 @@ public class CitasSubScene implements Initializable {
             listaNombreTratamientos.add(t.getNombre());
         }
         tratamientoComboBox.getItems().addAll(listaNombreTratamientos);
+
+        ArrayList<String> horasArrayList = new ArrayList<>();
+        int num = 8;
+        while (num <=20){
+            horasArrayList.add(String.format("%02d", num) + ":00");
+            num++;
+        }
+        horas.getItems().addAll(horasArrayList);
     }
 
     public void toEdit(Cita cita){
@@ -142,7 +154,22 @@ public class CitasSubScene implements Initializable {
         trabajadorComboBox.setValue(t.getNombre() + "(" + t.getDni() + ")");
         Tratamiento trat = cita.getTratamiento();
         tratamientoComboBox.setValue(trat.getNombre());
-        selectorFecha.setValue(cita.getFecha_hora());
+        selectorFecha.setValue(cita.getFecha());
+        horas.setValue(String.valueOf(cita.getHora()).substring(0,5));
         this.citaPrevia = cita;
+    }
+    @FXML
+    void onObserType(KeyEvent event) {
+        int num = observarTextArea.getText().length();
+        if (num>250){
+            observarTextArea.setText(observarTextArea.getText().substring(0, 29));
+            num = observarTextArea.getText().length();
+        }
+        obserLabel.setText(num + "/30");
+        if (num == 250){
+            obserLabel.setTextFill(Color.RED);
+        } else  {
+            obserLabel.setTextFill(Color.GREY);
+        }
     }
 }

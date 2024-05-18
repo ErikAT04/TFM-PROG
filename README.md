@@ -11,10 +11,10 @@
   Es un proyecto muy importante, ya que abarca todo un año (bastante complicado por distintos asuntos) aprendiendo y experimentando
 
   <p style="text-align: center;">Progreso actual del proyecto:<br>
-    28/33 clases completadas<br>
-    10/17 escenas hechas
+    33/33 clases completadas<br>
+    17/17 escenas hechas
     
-  ![](https://geps.dev/progress/80)
+  ![](https://geps.dev/progress/100)
   </p>
 
 ## Progreso
@@ -42,6 +42,7 @@
    <li>He hecho el diseño inicial de los archivos FXML principales, añadiendo tablas con sus respectivas columnas (Iván, 15/05/2024)</li>
    <li>Funciones principales de los FXML acabados (Iván, 16/05/2024)</li>
    <li>He añadido un css de lo más simple para dar otro toque (Erik, 17/05/2024)</li>
+   <li>FXMLs terminados (Erik e Iván, 18/05/2024)</li>
 </ol>
 
 ### 4. Clases DAO
@@ -53,6 +54,7 @@
    <li>He terminado de culminar el usuario, pudiendo cambiar su nombre y contraseña (Erik, 15/05/2024)</li>
    <li>Clase DAO de citas completada (Erik, 16/05/2024)</li>
    <li>Clases DAO de Trabajador, Persona, Cliente y Producto completadas (Iván, 16/05/2024)</li>
+   <li>Clases DAO terminadas (Erik e Iván, 18/05/2024)</li>
 </ol>
 
 ### 5. Controladores
@@ -65,6 +67,7 @@
    <li>He conseguido arreglar fallos que estaban dando los LocalDate, además de terminar todo lo relacionado al apartado "Citas" (Erik, 16/05/2024)</li>
    <li>Clases de cliente terminados</li>
    <li>He comenzao la clase TratSubScene, añadiendo y haciendo pruebas con un CheckComboBox</li>
+   <li>Controladores acabados (Erik e Iván, 18/05/2024)</li>
 </ol>
 
 ## Cambios y Arreglos
@@ -85,18 +88,3 @@ DIARIO DE CAGADAS DE ERIK:
 5. EL LOGIN NO FUNCIONA (un dia mas)
    Solución: Soy memo y he puesto que la contraseña a la hora de registrarse salga del textField del nombre de usuario
 -->
-
-## TO DO:
-<ul>
-    <li>ProdMainScene.java</li>
-    <li>ProdSubScene.java</li>
-    <li>TrabajadoresMainScene.java</li>
-    <li>TrabajadoresSubScene.java</li>
-    <li>TratMainScene.java</li>
-    <li>TratSubScene.java</li>
-    <li>TratamientoDAO.java</li>
-    <li>ClientesSubMain.fxml</li>
-    <li>ProductosSubMain.fxml</li>
-    <li>TrabajadoresSubMain.fxml</li>
-    <li>TratamientosSubMain.fxml</li>
-</ul>

@@ -5,7 +5,10 @@ import com.example.tfmjava.Objetos.Producto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ProdSubScene {
@@ -17,6 +20,10 @@ public class ProdSubScene {
     private TextField stockTF;
     @FXML
     private Button sendBtt;
+    @FXML
+    private Label nombreCaracteres;
+    @FXML
+    private Label marcaCaracteres;
     Producto prevProd;
     boolean editar = false;
     @FXML
@@ -58,6 +65,37 @@ public class ProdSubScene {
             }
             alert.showAndWait();
         }
+    }
+/*
+nombre VARCHAR(40) NOT NULL,
+    marca VARCHAR(30) NOT NULL
+ */
+    @FXML
+    void onMarcaType(KeyEvent event) {
+        String s = marcaTF.getText();
+        if (marcaTF.getText().length()>30){
+            s = s.substring(0,29);
+        }
+        if (s.length()==30){
+            marcaCaracteres.setTextFill(Color.RED);
+        }else {
+            marcaCaracteres.setTextFill(Color.GREY);
+        }
+        marcaTF.setText(s.length() + "/30");
+    }
+
+    @FXML
+    void onNombreType(KeyEvent event) {
+        String s = nombreTF.getText();
+        if (marcaTF.getText().length() > 40){
+            s = s.substring(0,40);
+        }
+        if (s.length()==40){
+            nombreCaracteres.setTextFill(Color.RED);
+        }else {
+            nombreCaracteres.setTextFill(Color.GREY);
+        }
+        nombreTF.setText(s.length() + "/40");
     }
 
     public void toEdit(Producto prod){

@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
@@ -33,6 +35,9 @@ public class TratSubScene implements Initializable {
 
     @FXML
     private TextField nombreTField;
+    @FXML
+    private Label nombreContador;
+
 
     @FXML
     private CheckComboBox<String> prodComBox;
@@ -52,42 +57,42 @@ public class TratSubScene implements Initializable {
         if (PrecioTField.getText().isEmpty() || descTextArea.getText().isEmpty() || duracionTField.getText().isEmpty() || nombreTField.getText().isEmpty() || prodComBox.getCheckModel().isEmpty()) {
             alert.setContentText("Alguno de los campos está vacío");
         } else {
-            String nombre = nombreTField.getText();
-            String descripcion = descTextArea.getText();
-            double duracion_media = Double.parseDouble(duracionTField.getText());
-            double precio = Double.parseDouble(PrecioTField.getText());
+            try {
+                String nombre = nombreTField.getText();
+                String descripcion = descTextArea.getText();
+                double duracion_media = Double.parseDouble(duracionTField.getText());
+                double precio = Double.parseDouble(PrecioTField.getText());
 
-            Tratamiento tratamiento = new Tratamiento(nombre, descripcion, precio, duracion_media);
-            ArrayList<String> productos = new ArrayList<>(prodComBox.getCheckModel().getCheckedItems());
-            ArrayList<Producto> productosChecked = new ArrayList<>();
-            for (String s : productos) {
-                Producto producto = prodMap.get(s);
-                productosChecked.add(producto);
-            }
-            if (edit) {
-                numFilas = TratamientoDAO.reiniciarProductosDeTratamientos(tratamiento.getCod_trat());
-                if (numFilas > 0) {
+                Tratamiento tratamiento = new Tratamiento(nombre, descripcion, precio, duracion_media);
+                ArrayList<String> productos = new ArrayList<>(prodComBox.getCheckModel().getCheckedItems());
+                ArrayList<Producto> productosChecked = new ArrayList<>();
+                for (String s : productos) {
+                    Producto producto = prodMap.get(s);
+                    productosChecked.add(producto);
+                }
+                if (edit) {
+                    TratamientoDAO.reiniciarProductosDeTratamientos(tratamiento.getCod_trat());
                     numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
                     if (numFilas > 0) {
                         numFilas = TratamientoDAO.actualizarTratamiento(tratamiento);
                     }
 
                 } else {
-                    alert.setContentText("Ha habido un error preparando los comandos");
+                    numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
+                    if (numFilas > 0) {
+                        numFilas = TratamientoDAO.addTratamiento(tratamiento);
+                    }
                 }
-            } else {
-                numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
-                if (numFilas > 0) {
-                    numFilas = TratamientoDAO.addTratamiento(tratamiento);
+                if (numFilas == 1) {
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Tratamiento" + accion + "correctamente");
+                    Stage stage = (Stage) this.descLabel.getScene().getWindow();
+                    stage.close();
+                } else {
+                    alert.setContentText("No se ha podido llevar a cabo la acción");
                 }
-            }
-            if (numFilas == 1){
-                alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.setContentText("Tratamiento" + accion + "correctamente");
-                Stage stage = (Stage) this.descLabel.getScene().getWindow();
-                stage.close();
-            } else {
-                alert.setContentText("No se ha podido llevar a cabo la acción");
+            }catch (Exception e){
+                alert.setContentText("Los valores de precio y tiempo medio son solo numéricos");
             }
         }
         alert.showAndWait();
@@ -116,5 +121,37 @@ public class TratSubScene implements Initializable {
             prodMap.put(s, p);
         }
         prodComBox.getItems().addAll(productoNombre);
+    }
+
+    /*
+    nombre VARCHAR(40) NOT NULL,
+    descripcion VARCHAR(250) NOT NULL,
+     */
+    @FXML
+    void onDescType(KeyEvent event) {
+        int num = descTextArea.getText().length(); //Esto guarda la longitud
+        if (descTextArea.getText().length()>250){ //Lo compara
+            descTextArea.setText(descTextArea.getText().substring(0,249)); //Actualiza el texto
+        }
+        if (num == 250){
+            descLabel.setTextFill(Color.RED);
+        } else {
+            descLabel.setTextFill(Color.GREY);
+        }
+        descLabel.setText(num + "/250");
+    }
+    @FXML
+    void onNameType(KeyEvent event) {
+    int num = nombreTField.getText().length();
+    if (nombreTField.getText().length()>40){
+        nombreTField.setText(nombreTField.getText().substring(0,39));
+        num = nombreTField.getText().length();
+    }
+    if (num == 40){
+        nombreContador.setTextFill(Color.RED);
+    }else {
+        nombreContador.setTextFill(Color.GREY);
+    }
+        nombreTField.setText(num + "/40");
     }
 }

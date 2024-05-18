@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 public class Validator {
     public static boolean validarDNI(String dni){
         if (dni.matches("(^[0-9]{8}[A-Z]$)")){
-            int dniSinLetra = (Integer.parseInt(dni.substring(0, 7)));
+            int dniSinLetra = (Integer.parseInt(dni.substring(0, 8)));
             String match = switch (dniSinLetra%23){
                 case 1 -> "R";
                 case 2 -> "W";
@@ -40,22 +40,14 @@ public class Validator {
         if (uname.contains(" ")){
             return false;
         } else {
-            if (uname.length()<3 || uname.length()>15){
-                return false;
-            } else {
-                return true;
-            }
+            return uname.length() >= 3 && uname.length() <= 15;
         }
     }
     public static boolean validarPasswd(String pass){
         if (pass.length() < 8 || pass.length() > 30){
             return false;
         } else {
-            if (pass.matches("[^;,*`^]")){
-                return true;
-            } else {
-                return false;
-            }
+            return !(pass.matches("[;,*`^]"));
         }
     }
     public static void mostrarInfoUname(){

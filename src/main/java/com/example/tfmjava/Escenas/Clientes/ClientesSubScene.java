@@ -3,14 +3,18 @@ package com.example.tfmjava.Escenas.Clientes;
 import com.example.tfmjava.Objetos.Cliente;
 import com.example.tfmjava.Objetos.DAO.ClienteDAO;
 import com.example.tfmjava.Objetos.LogInSignUp.Usuario;
+import com.example.tfmjava.Objetos.util.Validator;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.validation.ValidateEvent;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ClientesSubScene{
     @FXML
@@ -29,6 +33,16 @@ public class ClientesSubScene{
     private Button sendBtt;
     @FXML
     private Label contadorLabel;
+    @FXML
+    private Label apellContador;
+    @FXML
+    private Label nombreContador;
+    @FXML
+    private Label telfContador;
+
+    @FXML
+    private Label dniContador;
+
     boolean edit = false;
     @FXML
     private void onSendClick(){
@@ -40,7 +54,10 @@ public class ClientesSubScene{
         try {
             if (nombreTF.getText().isEmpty() || apellidosTF.getText().isEmpty() || dniTF.getText().isEmpty() || telTF.getText().isEmpty() || fnacChooser.getValue() == null) {
                 alert.setContentText("Hay valores que no pueden ser nulos");
+            } else if (!Validator.validarDNI(dniTF.getText())){
+                alert.setContentText("El DNI no sigue el criterio esperado");
             } else {
+
                 String nombre = nombreTF.getText();
                 String apellidos = apellidosTF.getText();
                 String dni = dniTF.getText();
@@ -107,4 +124,74 @@ public class ClientesSubScene{
         onObservType(null); //iniciar el texto
     }
 
+    @FXML
+    void onTelfType(KeyEvent event) {
+        int num = telTF.getText().length();
+        if (num>9){
+            telTF.setText(telTF.getText().substring(0, 8));
+            num = telTF.getText().length();
+        }
+        telfContador.setText(num + "/9");
+        if (num==9){
+            telfContador.setTextFill(Color.RED);
+        } else {
+            telfContador.setTextFill(Color.GREY);
+        }
+    }
+    @FXML
+    void checkBornDate(ActionEvent event) {
+        if (fnacChooser.getValue().isAfter(LocalDate.now()) || fnacChooser.getValue().isEqual(LocalDate.now())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error de fecha");
+            alert.setContentText("No puede haber un cliente recién nacido (o ni eso)");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            fnacChooser.setValue(LocalDate.now().minusDays(1));
+        }
+    }
+
+    @FXML
+    void onApellidoType(KeyEvent event) {
+        int num = apellidosTF.getText().length();
+        if (num>50){
+            apellidosTF.setText(apellidosTF.getText().substring(0, 49));
+            num = apellidosTF.getText().length();
+        }
+        apellContador.setText(num + "/50");
+        if (num==50){
+            apellContador.setTextFill(Color.RED);
+        } else {
+            apellContador.setTextFill(Color.GREY);
+        }
+    }
+
+    @FXML
+    void onDNIType(KeyEvent event) {
+        int num = dniTF.getText().length();
+        if (num>9){
+            dniTF.setText(dniTF.getText().substring(0, 8));
+            num = dniTF.getText().length();
+        }
+        dniContador.setText(num + "/9");
+        if (num==9){
+            dniContador.setTextFill(Color.RED);
+        } else {
+            dniContador.setTextFill(Color.GREY);
+        }
+    }
+
+    @FXML
+    void onNombreType(KeyEvent event) {
+        int num = nombreTF.getText().length();
+        if (num>20){
+            nombreTF.setText(nombreTF.getText().substring(0, 19));
+            num = dniTF.getText().length();
+        }
+        nombreContador.setText(num + "/20");
+        if (num==20){
+            nombreContador.setTextFill(Color.RED);
+        } else {
+            nombreContador.setTextFill(Color.GREY);
+        }
+    }
 }

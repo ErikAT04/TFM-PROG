@@ -2,13 +2,14 @@ package com.example.tfmjava.Escenas.Trabajadores;
 
 import com.example.tfmjava.Objetos.DAO.TrabajadorDAO;
 import com.example.tfmjava.Objetos.Trabajador;
+import com.example.tfmjava.Objetos.util.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 
 import java.net.URL;
@@ -31,6 +32,12 @@ public class TrabajadoresSubScene implements Initializable {
 
     @FXML
     private Button sendBtt;
+    @FXML
+    private Label apellContador;
+    @FXML
+    private Label dniContador;
+    @FXML
+    private Label nombreContador;
 
     Boolean op=false;
 
@@ -49,6 +56,10 @@ public class TrabajadoresSubScene implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("El campo no puede estar vacío");
             alert.showAndWait();
+        } else if(!Validator.validarDNI(dni)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("El DNI no cumple el criterio esperado");
+            alert.showAndWait();
         } else {
             String horario = "";
             for (String s : diasHorario) {
@@ -64,6 +75,8 @@ public class TrabajadoresSubScene implements Initializable {
                     alert.setTitle("Actualización");
                     alert.setContentText("Se ha actualizado el trabajador con éxito");
                     alert.showAndWait();
+                    Stage stage = (Stage) this.horarioComBox.getScene().getWindow();
+                    stage.close();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error...");
@@ -113,6 +126,48 @@ public class TrabajadoresSubScene implements Initializable {
         if (trabajador.getHorario().contains("Domingo")){
             horarioComBox.getCheckModel().check("Domingo");
         }
+    }
+    @FXML
+    void onApellidoType(KeyEvent event) {
+        String s = apellidoTField.getText();
+        if (apellidoTField.getText().length()>50){ //Conteo del text field
+            s = s.substring(0, 49); //Hace un substring que ocupa desde la posicion 0 a la 49 (50 posiciones en total). Substring es un string dentro de otro, digase, se queda con lo que tu selecciones
+            apellidoTField.setText(s);
+        }
+        if (s.length()==50){
+            apellContador.setTextFill(Color.RED);
+        } else {
+            apellContador.setTextFill(Color.GREY);
+        }
+        apellContador.setText(s.length() + "/50");
+    }
+
+    @FXML
+    void onDNIType(KeyEvent event) {
+        String s = dniTField.getText();
+        if (dniTField.getText().length()>9){
+            s = s.substring(0,8);
+        }
+        if (s.length()==9){
+            dniContador.setTextFill(Color.RED);
+        } else {
+            dniContador.setTextFill(Color.GREY);
+        }
+        dniTField.setText(s.length() + "/9");
+    }
+
+    @FXML
+    void onNombreType(KeyEvent event) {
+        String s = nombreTField.getText();
+        if (nombreTField.getText().length() > 20) {
+            s = s.substring(0, 19);
+        }
+        if (s.length() == 20) {
+            nombreContador.setTextFill(Color.RED);
+        } else {
+            nombreContador.setTextFill(Color.GREY);
+        }
+        nombreTField.setText(s.length() + "/20");
     }
 }
 

@@ -19,18 +19,20 @@
         <Label layoutX="24.0" layoutY="123.0" text="Nombre de Usuario:" />
         <Label layoutX="64.0" layoutY="170.0" text="Contraseña: " />
         <Button fx:id="loginBtt" layoutX="153.0" layoutY="215.0" mnemonicParsing="false" onAction="#onLoginAction" text="Iniciar sesión" />
-        <TextField fx:id="unameRegister" layoutX="140.0" layoutY="119.0" />
-        <PasswordField fx:id="passRegister" layoutX="140.0" layoutY="166.0" />
+        <TextField fx:id="unameLogin" layoutX="140.0" layoutY="119.0" onKeyTyped="#onUnameType" />
+        <PasswordField fx:id="passLogin" layoutX="140.0" layoutY="166.0" onKeyTyped="#onPasswdType" />
         <Label fx:id="passTXT" layoutX="232.0" layoutY="241.0" />
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="292.0" layoutY="116.0" onMouseClicked="#unameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="331.0" layoutY="116.0" onMouseClicked="#unameInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="292.0" layoutY="163.0" onMouseClicked="#passwdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="331.0" layoutY="163.0" onMouseClicked="#passwdInfoIMGClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../otherSRC/img/info.png" />
          </image>
       </ImageView>
+      <Label fx:id="unameContador" layoutX="296.0" layoutY="124.0" text="0/30" />
+      <Label fx:id="passwdContador" layoutX="296.0" layoutY="171.0" text="0/30" />
     </children>
 </AnchorPane>

@@ -5,15 +5,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="214.0" prefWidth="341.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.Productos.ProdSubScene">
    <children>
       <Label layoutX="62.0" layoutY="42.0" text="Nombre:" />
       <Label layoutX="73.0" layoutY="79.0" text="Marca:" />
       <Label layoutX="77.0" layoutY="116.0" text="Stock:" />
-      <TextField fx:id="nombreTF" layoutX="131.0" layoutY="38.0" />
-      <TextField fx:id="marcaTF" layoutX="131.0" layoutY="75.0" />
+      <TextField fx:id="nombreTF" layoutX="131.0" layoutY="38.0" onKeyTyped="#onNombreType" />
+      <TextField fx:id="marcaTF" layoutX="131.0" layoutY="75.0" onKeyTyped="#onMarcaType" />
       <TextField fx:id="stockTF" layoutX="131.0" layoutY="112.0" />
       <Button fx:id="sendBtt" layoutX="145.0" layoutY="164.0" mnemonicParsing="false" onAction="#onSendClick" text="Añadir" />
+      <Label fx:id="nombreCaracteres" layoutX="288.0" layoutY="42.0" text="0/40" />
+      <Label fx:id="marcaCaracteres" layoutX="288.0" layoutY="79.0" text="0/40" />
    </children>
 </AnchorPane>
