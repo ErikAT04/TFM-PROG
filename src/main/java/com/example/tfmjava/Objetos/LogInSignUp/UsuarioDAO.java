@@ -10,7 +10,7 @@ public class UsuarioDAO {
         Connection con=null;
         String usuario = "root";
         String password = "IESRibera23";
-        String url = "jdbc:mysql://83.53.117.100:3306/users";
+        String url = "jdbc:mysql://localhost:3306/users";
         try {
             con = DriverManager.getConnection(url, usuario, password);
         }catch (SQLException e){
@@ -21,7 +21,7 @@ public class UsuarioDAO {
     public static Connection conectarSignUp(){ //Esta conexión sirve para poder editar el sistema, es necesario para crear usuarios y bases de datos porque dentro de conexiones como la anterior no se puede hacer
         Connection con=null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://83.53.117.100/?user=root&password=IESRibera23");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=IESRibera23");
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
