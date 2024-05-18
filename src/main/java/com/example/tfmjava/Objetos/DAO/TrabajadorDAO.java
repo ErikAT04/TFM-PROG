@@ -34,21 +34,52 @@ public class TrabajadorDAO {
         }
         return trabajadores;
     }
-    /*
-                    COD_TRABAJADOR INT PRIMARY KEY AUTO_INCREMENT,
-                    dni VARCHAR(9) UNIQUE,
-                    nombre VARCHAR(20) NOT NULL,
-                    apellidos VARCHAR(50) NOT NULL,
-                    horario VARCHAR(60) NOT NULL
-                 */
     public static int addTrabajador(Trabajador trabajador){
-        return 0;
+        int filasInsertadas = 0;
+        try(Connection con = DataBaseManager.getConnection()){
+            String sql = "INSERT INTO TRABAJADOR(COD_TRABAJADOR, dni, nombre, apellidos, horario) VALUES(?, ?, ?, ?, ?)";
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, trabajador.getCod_trabajador());
+            sentencia.setString(2, trabajador.getDni());
+            sentencia.setString(3, trabajador.getNombre());
+            sentencia.setString(4, trabajador.getApellidos());
+            sentencia.setString(5, trabajador.getHorario());
+
+            filasInsertadas = sentencia.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return filasInsertadas;
     }
-    public static int borrarTrabajador(String dni){
-        return 0;
+    public static int borrarTrabajador(int COD_TRABAJADOR){
+        String sql = "DELETE FROM TRABAJADOR WHERE COD_TRABAJADOR = ?";
+        int numFilas = 0;
+        try(Connection con = DataBaseManager.getConnection()){
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, COD_TRABAJADOR);
+
+            numFilas=sentencia.executeUpdate();
+        }catch (SQLException e){
+            System.out.println("Error " + e);
+        }
+        return numFilas;
     }
     public static int actualizarTrabajador(Trabajador trabajador){
-        return 0;
+        int numFilas=0;
+        String sql = "UPDATE TRABAJADOR SET dni = ?, nombre = ?, apellidos = ?, horario = ? WHERE COD_TRABAJADOR = ?) ";
+        try(Connection con = DataBaseManager.getConnection()){
+            PreparedStatement sentencia = con.prepareStatement(sql);
+            sentencia.setString(1, trabajador.getDni());
+            sentencia.setString(2, trabajador.getNombre());
+            sentencia.setString(3, trabajador.getApellidos());
+            sentencia.setString(4, trabajador.getHorario());
+            sentencia.setInt(5, trabajador.getCod_trabajador());
+            numFilas = sentencia.executeUpdate();
+        }catch (SQLException e){
+            System.out.println("Error " + e);
+        }
+        return numFilas;
     }
 
     public static Trabajador buscarTrabajador(int codTrabajador) {
@@ -67,15 +98,6 @@ public class TrabajadorDAO {
                 String horario = consulta.getString("horario");
                 trabajador = new Trabajador(dni, nombre, apellidos,codTrabajador, horario);
             }
-
-
-                /*
-                    COD_TRABAJADOR INT PRIMARY KEY AUTO_INCREMENT,
-                    dni VARCHAR(9) UNIQUE,
-                    nombre VARCHAR(20) NOT NULL,
-                    apellidos VARCHAR(50) NOT NULL,
-                    horario VARCHAR(60) NOT NULL
-                 */
         }catch (SQLException e){
 
         }
