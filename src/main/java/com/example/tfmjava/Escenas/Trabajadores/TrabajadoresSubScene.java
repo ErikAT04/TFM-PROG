@@ -83,7 +83,22 @@ public class TrabajadoresSubScene implements Initializable {
                     alert.setContentText("No se ha podido editar al trabajador");
                 }
             } else {
-
+            int numFilas = 0;
+            Trabajador trabajador = new Trabajador(dni,nombre, apellido, horario);
+            numFilas = TrabajadorDAO.addTrabajador(trabajador);
+            if (numFilas == 1){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Creación");
+                alert.setContentText("Trabajador añadido correctamente");
+                alert.showAndWait();
+                Stage stage = (Stage) this.horarioComBox.getScene().getWindow();
+                stage.close();
+            } {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error...");
+                alert.setContentText("Error al añadir el trabajador");
+                alert.showAndWait();
+                }
             }
         }
     }
