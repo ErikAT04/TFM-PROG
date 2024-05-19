@@ -172,4 +172,15 @@ public class CitasSubScene implements Initializable {
             obserLabel.setTextFill(Color.GREY);
         }
     }
+    @FXML
+    void checkCitaDate(){
+        if (selectorFecha.getValue().isBefore(LocalDate.now())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error de fecha");
+            alert.setContentText("No puedes poner una fecha ya pasada");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            selectorFecha.setValue(LocalDate.now());
+        }
+    }
 }

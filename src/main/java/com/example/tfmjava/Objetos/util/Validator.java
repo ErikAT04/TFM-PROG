@@ -67,8 +67,7 @@ public class Validator {
         alert.setHeaderText("Normas de la contraseña:");
         alert.setContentText("""
                 1. Tiene que tener entre 8 y 30 caracteres
-                2. No puede tener espacios ni los siguientes caracteres ";, ^, ;, *,`" en su interior
-                3. Solo hay un nombre de usuario disponible por base de datos.""");
+                2. No puede tener espacios ni caracteres no alfanuméricos (, . ` + - _ ^ ...) en su interior""");
         alert.showAndWait();
     }
 }

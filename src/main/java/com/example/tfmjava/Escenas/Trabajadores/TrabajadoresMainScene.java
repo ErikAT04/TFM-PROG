@@ -120,5 +120,6 @@ public class TrabajadoresMainScene implements Initializable {
     public void refreshTable() {
         ObservableList<Trabajador> trabajadorObservableList = FXCollections.observableArrayList(TrabajadorDAO.listarTrabajadores());
         tablaTrabajador.setItems(trabajadorObservableList);
+        tablaTrabajador.refresh();
     }
 }

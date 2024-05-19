@@ -129,5 +129,6 @@ public class TratMainScene implements Initializable {
     public void refreshTable() {
         ObservableList<Tratamiento> tratamientos = FXCollections.observableList(TratamientoDAO.listarTratamientos());
         tablaTratamientos.setItems(tratamientos);
+        tablaTratamientos.refresh();
     }
 }

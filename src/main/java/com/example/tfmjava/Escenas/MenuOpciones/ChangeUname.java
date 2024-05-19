@@ -41,7 +41,7 @@ public class ChangeUname {
             String passwd = passwdField.getText();
             if (!Validator.validarUname(uname) || !Validator.validarPasswd(passwd)){
                 alert.setContentText("No se cumplen los criterios de nombre y contraseña.");
-            } else if (passwd.equals(DataBaseManager.password)) {
+            } else if (!passwd.equals(DataBaseManager.password)) {
                 alert.setContentText("La contraseña escrita no es correcta");
             }else {
                 Usuario usuario = UsuarioDAO.userForLogin(uname);

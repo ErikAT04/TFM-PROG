@@ -113,5 +113,6 @@ public class CitasMainScene implements Initializable {
     public void refreshTable(){
         ObservableList<String[]> citaObservableList = FXCollections.observableList(CitaDAO.listarCitas());
         tablaCita.setItems(citaObservableList);
+        tablaCita.refresh();
     }
 }

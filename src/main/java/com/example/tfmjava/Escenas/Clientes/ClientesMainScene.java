@@ -69,8 +69,8 @@ public class ClientesMainScene implements Initializable {
             controller.toEdit(cliente);
             stage.setScene(scene);
             stage.showAndWait();
-            tableRefresh();
         }
+        tableRefresh();
     }
 
     public void onClienteDeleteClick(ActionEvent actionEvent) {
@@ -105,8 +105,8 @@ public class ClientesMainScene implements Initializable {
         tableRefresh();
     }
     public void tableRefresh(){
-        ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
-        clienteObservableList = FXCollections.observableList(clientes);
+        clienteObservableList = FXCollections.observableList(ClienteDAO.listarClientes());
         clienteTable.setItems(clienteObservableList);
+        clienteTable.refresh();
     }
 }
