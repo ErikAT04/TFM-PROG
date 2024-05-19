@@ -47,7 +47,7 @@ public class ChangeUname {
                 Usuario usuario = UsuarioDAO.userForLogin(uname);
                 if (usuario == null){
                     actualUser.setUname(uname);
-                    int numFilasAct = UsuarioDAO.updateUser(actualUser);
+                    int numFilasAct = UsuarioDAO.updateUser(actualUser, true); //Para que se edite el nombre de usuario
                     if (numFilasAct==1){
                         DataBaseManager.username = uname;
                         alert.setContentText("Usuario Actualizado correctamente");

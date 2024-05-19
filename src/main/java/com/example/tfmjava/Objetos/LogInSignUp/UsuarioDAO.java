@@ -145,7 +145,7 @@ public class UsuarioDAO {
         return bool;
     }
 
-    public static int updateUser(Usuario usuario) {
+    public static int updateUser(Usuario usuario, boolean editUname) {
         int numFilas = 0;
         String sql = "UPDATE USERS.USUARIO SET UNAME = ?, PASSWD = ? WHERE ID = ?";
         String sqlUser = "RENAME USER ? TO ?";
@@ -155,11 +155,12 @@ public class UsuarioDAO {
             sentencia.setString(2, usuario.getPasswd());
             sentencia.setInt(3, usuario.getId());
             numFilas = sentencia.executeUpdate();
-
-            sentencia = con.prepareStatement(sqlUser);
-            sentencia.setString(1, DataBaseManager.username);
-            sentencia.setString(2, usuario.getUname());
-            sentencia.executeUpdate();
+            if (editUname) {
+                sentencia = con.prepareStatement(sqlUser);
+                sentencia.setString(1, DataBaseManager.username);
+                sentencia.setString(2, usuario.getUname());
+                sentencia.executeUpdate();
+            }
 
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -178,12 +179,13 @@ public class UsuarioDAO {
         return numFilas;
     }
     public static int updatePasswd(Usuario usuario){
-        int numFilas=0;
-        String sql = "ALTER USER " + usuario.getUname() + "@'%' IDENTIFIED BY " + usuario.getPasswd();
+        int numFilas;
+        String sql = "ALTER USER '" + usuario.getUname() + "'@'%' IDENTIFIED BY '" + usuario.getPasswd() + "'";
         try(Connection con = conectarSignUp()){
             Statement sentencia = con.createStatement();
             numFilas = sentencia.executeUpdate(sql);
         }catch (SQLException e){
+            numFilas = 1;
             System.out.println(e.getMessage());
         }
         return numFilas;

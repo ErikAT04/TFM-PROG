@@ -81,6 +81,7 @@ public class TrabajadoresSubScene implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error...");
                     alert.setContentText("No se ha podido editar al trabajador");
+                    alert.showAndWait();
                 }
             } else {
             int numFilas = 0;
@@ -93,7 +94,7 @@ public class TrabajadoresSubScene implements Initializable {
                 alert.showAndWait();
                 Stage stage = (Stage) this.horarioComBox.getScene().getWindow();
                 stage.close();
-            } {
+            } else  {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error...");
                 alert.setContentText("Error al añadir el trabajador");
@@ -115,6 +116,7 @@ public class TrabajadoresSubScene implements Initializable {
         horarioComBox.getItems().addAll(diasSemana);
     }
     public void toEdit(Trabajador trabajador) {
+        sendBtt.setText("Editar");
         op = true;
         codT=trabajador.getCod_trabajador();
         this.dniTField.setText(trabajador.getDni());
@@ -168,7 +170,7 @@ public class TrabajadoresSubScene implements Initializable {
         } else {
             dniContador.setTextFill(Color.GREY);
         }
-        dniTField.setText(s.length() + "/9");
+        dniContador.setText(s.length() + "/9");
     }
 
     @FXML
@@ -182,7 +184,7 @@ public class TrabajadoresSubScene implements Initializable {
         } else {
             nombreContador.setTextFill(Color.GREY);
         }
-        nombreTField.setText(s.length() + "/20");
+        nombreContador.setText(s.length() + "/20");
     }
 }
 

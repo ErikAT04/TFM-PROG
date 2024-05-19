@@ -54,10 +54,10 @@ public class ChangePasswd {
             String newPass = newPassTField.getText();
             Usuario usuario = UsuarioDAO.userForLogin(DataBaseManager.username);
             usuario.setPasswd(newPass);
-            int numFilas = UsuarioDAO.updateUser(usuario);
+            int numFilas = UsuarioDAO.updateUser(usuario, false); //Para que no se edite el usuario
             if(numFilas==1){
                 numFilas=UsuarioDAO.updatePasswd(usuario);
-                if (numFilas==1){
+                if (numFilas==0){ //En este caso, el update debe ser 0, porque en la sentencia ALTER USER no se saca cuantas filas han sido actualizadas
                     alert.setContentText("Contraseña cambiada correctamente");
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Cambio correcto");
@@ -80,6 +80,18 @@ public class ChangePasswd {
         } else {
             passLabel.setText("Las contraseñas no coinciden");
             passLabel.setTextFill(Color.RED);
+        }
+
+        int num = newPassConfirmTField.getText().length();
+        if (num>30){
+            newPassConfirmTField.setText(newPassConfirmTField.getText().substring(0, 29));
+            num = newPassConfirmTField.getText().length();
+        }
+        repeatNewPassContador.setText(num + "/30");
+        if (num == 30){
+            repeatNewPassContador.setTextFill(Color.RED);
+        } else  {
+            repeatNewPassContador.setTextFill(Color.GREY);
         }
     }
     @FXML

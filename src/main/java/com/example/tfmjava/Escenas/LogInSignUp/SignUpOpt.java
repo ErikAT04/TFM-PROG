@@ -10,11 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class SignUpOpt {
 
@@ -112,6 +114,9 @@ public class SignUpOpt {
     public void cambioEscenaAMain() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("MainView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        escenario.setTitle("HerToq - Menú principal");
+        Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+        escenario.getIcons().add(img);
         this.escenario.setScene(scene);
         this.escenario.show();
     }

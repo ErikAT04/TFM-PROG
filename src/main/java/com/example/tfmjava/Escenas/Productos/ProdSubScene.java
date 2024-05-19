@@ -66,10 +66,7 @@ public class ProdSubScene {
             alert.showAndWait();
         }
     }
-/*
-nombre VARCHAR(40) NOT NULL,
-    marca VARCHAR(30) NOT NULL
- */
+
     @FXML
     void onMarcaType(KeyEvent event) {
         String s = marcaTF.getText();
@@ -81,7 +78,7 @@ nombre VARCHAR(40) NOT NULL,
         }else {
             marcaCaracteres.setTextFill(Color.GREY);
         }
-        marcaTF.setText(s.length() + "/30");
+        marcaCaracteres.setText(s.length() + "/30");
     }
 
     @FXML
@@ -95,7 +92,7 @@ nombre VARCHAR(40) NOT NULL,
         }else {
             nombreCaracteres.setTextFill(Color.GREY);
         }
-        nombreTF.setText(s.length() + "/40");
+        marcaCaracteres.setText(s.length() + "/40");
     }
 
     public void toEdit(Producto prod){
@@ -103,6 +100,5 @@ nombre VARCHAR(40) NOT NULL,
         editar = true;
         nombreTF.setText(prod.getNombre());
         marcaTF.setText(prod.getMarca());
-        marcaTF.setText(prod.getNombre());
     }
 }

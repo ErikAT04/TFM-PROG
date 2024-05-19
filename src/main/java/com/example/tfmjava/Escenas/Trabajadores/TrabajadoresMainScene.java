@@ -63,6 +63,7 @@ public class TrabajadoresMainScene implements Initializable {
         stage.getIcons().add(img);
         stage.setScene(scene);
         stage.showAndWait();
+        refreshTable();
     }
 
     @FXML
