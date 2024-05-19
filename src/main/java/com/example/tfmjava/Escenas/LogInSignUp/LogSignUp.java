@@ -110,7 +110,7 @@ public class LogSignUp {
                 con.close();
 
                 Stage stage = (Stage) this.loginBT.getScene().getWindow();
-                stage.setTitle("HerToq - Menú Principal");
+                stage.setTitle("ToqHer - Menú Principal");
                 Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
                 stage.getIcons().add(img);
                 FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("MainView.fxml"));
@@ -133,7 +133,7 @@ public class LogSignUp {
             DataBaseManager.password = "PRU3B4";
             DataBaseManager.dbName = "dummybbdd";
             Stage stage = (Stage) this.loginBT.getScene().getWindow();
-            stage.setTitle("HerToq - Menú principal");
+            stage.setTitle("ToqHer - Menú principal");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             FXMLLoader fxmlLoader = new FXMLLoader(InitApplication.class.getResource("MainView.fxml"));

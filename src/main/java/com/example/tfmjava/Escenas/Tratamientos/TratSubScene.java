@@ -80,12 +80,12 @@ public class TratSubScene implements Initializable {
                     }
 
                 } else {
-                    numFilas = TratamientoDAO.addAllFilas(productosChecked, tratamiento.getCod_trat());
-                    if (numFilas >= 0) {
-                        numFilas = TratamientoDAO.addTratamiento(tratamiento);
+                    int cod_trat = TratamientoDAO.addTratamiento(tratamiento);
+                    if (cod_trat > 0) {
+                        numFilas = TratamientoDAO.addAllFilas(productosChecked,cod_trat);
                     }
                 }
-                if (numFilas == 1) {
+                if (numFilas >= 0 ) {
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setContentText("Tratamiento" + accion + "correctamente");
                     Stage stage = (Stage) this.descLabel.getScene().getWindow();

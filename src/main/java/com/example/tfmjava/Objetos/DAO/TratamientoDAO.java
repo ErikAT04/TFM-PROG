@@ -42,7 +42,7 @@ public class TratamientoDAO {
     duracion_media_horas DOUBLE NOT NULL
     */
     public static int addTratamiento(Tratamiento tratamiento){
-        int filasInsertadas = 0;
+        int cod_trat = 0;
         try(Connection con = DataBaseManager.getConnection()){
             String sql = "INSERT INTO TRATAMIENTO(COD_TRAT, nombre, descripcion, precio, duracion_media_horas) VALUES(?, ?, ?, ?, ?)";
             PreparedStatement sentencia = con.prepareStatement(sql);
@@ -52,12 +52,17 @@ public class TratamientoDAO {
             sentencia.setDouble(4, tratamiento.getPrecio());
             sentencia.setDouble(5, tratamiento.getDuracion_media_horas());
 
-            filasInsertadas = sentencia.executeUpdate();
+            sentencia.executeUpdate();
+
+            ResultSet res = con.createStatement().executeQuery("SELECT MAX(COD_TRAT) FROM TRATAMIENTO");
+            if (res.next()){
+                cod_trat = res.getInt(1);
+            }
 
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
-        return filasInsertadas;
+        return cod_trat;
     }
     public static int borrarTratamiento(int COD_TRAT){
         String sql = "DELETE FROM TRATAMIENTO WHERE COD_TRAT = ?";
@@ -101,6 +106,7 @@ public class TratamientoDAO {
             numFilas = sentencia.executeUpdate();
         }catch (SQLException e){
             System.out.println("Error " + e);
+            numFilas=-1;
         }
         return numFilas;
     }
@@ -139,18 +145,12 @@ public class TratamientoDAO {
                 double duracion_media = consulta.getDouble("duracion_media_horas");
                 tratamiento = new Tratamiento(codTrat, nombre, descripcion, precio, duracion_media);
             }
-            /*
-                cod_trat INT PRIMARY KEY AUTO_INCREMENT,
-                nombre VARCHAR(40) NOT NULL,
-                descripcion VARCHAR(250) NOT NULL,
-                precio DOUBLE NOT NULL,
-                duracion_media_horas DOUBLE NOT NULL
-             */
-        }catch (SQLException e){
+        }catch (SQLException e) {
         }
 
         return tratamiento;
     }
+
     public static int reiniciarProductosDeTratamientos(int cod_trat){
         String sql = "DELETE FROM PRODUCTO_TRATAMIENTO WHERE COD_TRATAMIENTO = ?";
         int numFilas = 0;
@@ -165,7 +165,7 @@ public class TratamientoDAO {
 
     public static int addAllFilas(ArrayList<Producto> productos, int cod_trat) {
         int numFilas = 0;
-        String sql = "INSERT INTO PRODUCTO_TRATAMIENTO VALUES(?, ?)";
+        String sql = "INSERT INTO PRODUCTO_TRATAMIENTO(COD_PRODUCTO, COD_TRATAMIENTO) VALUES(?, ?)";
         try (Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             for (Producto p : productos){
@@ -176,6 +176,7 @@ public class TratamientoDAO {
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
+            numFilas=-1;
         }
         return numFilas;
     }

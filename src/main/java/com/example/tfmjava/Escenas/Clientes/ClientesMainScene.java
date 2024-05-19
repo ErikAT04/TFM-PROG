@@ -79,7 +79,7 @@ public class ClientesMainScene implements Initializable {
         alert.setHeaderText(null);
         Cliente cliente = clienteTable.getSelectionModel().getSelectedItem();
         if (cliente==null){
-            alert.setContentText("No se ha seleccionado un usuario");
+            alert.setContentText("No se ha seleccionado ningún cliente");
         } else {
             int numFilas = ClienteDAO.borrarCliente(cliente.getDni());
             if (numFilas==1){

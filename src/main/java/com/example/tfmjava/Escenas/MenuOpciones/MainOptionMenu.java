@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.skin.CellSkinBase;
 import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -127,73 +128,75 @@ public class MainOptionMenu {
     void onPrintDB(ActionEvent event) {
 
         DirectoryChooser exploradorDeArchivos = new DirectoryChooser();
-        File archivoElegido =exploradorDeArchivos.showDialog(currentStage); //Abro el explorador de archivos y le pido que elija dónde guardar el archivo a generar
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido + "/DataBaseAt(" + LocalDate.now()+ " " + LocalDateTime.now().getHour()+"."+LocalDateTime.now().getMinute()+"."+ LocalDateTime.now().getSecond()+").txt"))){
-            ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
-            ArrayList<Producto> productos = ProductoDAO.listarProductos();
-            ArrayList<Trabajador> trabajadores = TrabajadorDAO.listarTrabajadores();
-            ArrayList<Tratamiento> tratamientos = TratamientoDAO.listarTratamientos();
-            List<String[]> citas = CitaDAO.listarCitas();
-            String str;
-            str = "Base de datos de " + DataBaseManager.username + ", " + LocalDate.now();
-            writer.write(str);
+        File archivoElegido = exploradorDeArchivos.showDialog(currentStage);
+        if (archivoElegido != null) {//Abro el explorador de archivos y le pido que elija dónde guardar el archivo a generar
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoElegido + "/DataBaseAt(" + LocalDate.now() + " " + LocalDateTime.now().getHour() + "." + LocalDateTime.now().getMinute() + "." + LocalDateTime.now().getSecond() + ").txt"))) {
+                ArrayList<Cliente> clientes = ClienteDAO.listarClientes();
+                ArrayList<Producto> productos = ProductoDAO.listarProductos();
+                ArrayList<Trabajador> trabajadores = TrabajadorDAO.listarTrabajadores();
+                ArrayList<Tratamiento> tratamientos = TratamientoDAO.listarTratamientos();
+                List<String[]> citas = CitaDAO.listarCitas();
+                String str;
+                str = "Base de datos de " + DataBaseManager.username + ", " + LocalDate.now();
+                writer.write(str);
 
-            writer.newLine();
-            writer.newLine(); //Dos saltos de línea
-
-            writer.write("Trabajadores: ");
-            writer.newLine();
-            for (Trabajador t : trabajadores){
-                writer.write(t.toString());
                 writer.newLine();
-            }
-            writer.newLine();
+                writer.newLine(); //Dos saltos de línea
 
-            writer.write("Clientes: ");
-            writer.newLine();
-            for (Cliente c : clientes){
-                writer.write(c.toString());
+                writer.write("Trabajadores: ");
                 writer.newLine();
-            }
-            writer.newLine();
+                for (Trabajador t : trabajadores) {
+                    writer.write(t.toString());
+                    writer.newLine();
+                }
+                writer.newLine();
 
-            writer.write("Productos: ");
-            writer.newLine();
-            for (Producto p : productos){
-                writer.write(p.toString());
+                writer.write("Clientes: ");
                 writer.newLine();
-            }
-            writer.newLine();
+                for (Cliente c : clientes) {
+                    writer.write(c.toString());
+                    writer.newLine();
+                }
+                writer.newLine();
 
-            writer.write("Tratamientos: ");
-            writer.newLine();
-            for (Tratamiento t : tratamientos){
-                writer.write(t.toString());
+                writer.write("Productos: ");
                 writer.newLine();
-            }
-            writer.newLine();
+                for (Producto p : productos) {
+                    writer.write(p.toString());
+                    writer.newLine();
+                }
+                writer.newLine();
 
-            writer.write("Citas: ");
-            writer.newLine();
-            for (String[] s : citas){
-                String res ="";
-                res += "Codigo de cita: " + s[0] + ", ";
-                res += "Fecha y hora: " + s[1] + ", ";
-                res += "Observaciones: " + s[2] + ", ";
-                res += "Tratamiento: " + s[3] + ", ";
-                res += "Trabajador encargado: " + s[4] + ", ";
-                res += "Cliente atendido: " + s[5];
-                writer.write(res);
+                writer.write("Tratamientos: ");
                 writer.newLine();
+                for (Tratamiento t : tratamientos) {
+                    writer.write(t.toString());
+                    writer.newLine();
+                }
+                writer.newLine();
+
+                writer.write("Citas: ");
+                writer.newLine();
+                for (String[] s : citas) {
+                    String res = "";
+                    res += "Codigo de cita: " + s[0] + ", ";
+                    res += "Fecha y hora: " + s[1] + ", ";
+                    res += "Observaciones: " + s[2] + ", ";
+                    res += "Tratamiento: " + s[3] + ", ";
+                    res += "Trabajador encargado: " + s[4] + ", ";
+                    res += "Cliente atendido: " + s[5];
+                    writer.write(res);
+                    writer.newLine();
+                }
+                writer.newLine();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Archivo Guardado");
+                alert.setContentText("Archivo guardado correctamente");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
-            writer.newLine();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Archivo Guardado");
-            alert.setContentText("Archivo guardado correctamente");
-            alert.setHeaderText(null);
-            alert.showAndWait();
-        }catch (IOException e){
-            System.out.println(e.getMessage());
         }
     }
 }

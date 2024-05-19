@@ -66,27 +66,6 @@ public class Tratamiento {
     public void setDuracion_media_horas(double duracion_media_horas) {
         this.duracion_media_horas = duracion_media_horas;
     }
-    public boolean aniadir_productos_usados (Producto prod){
-        for (Producto productoABuscar : productos_utilizados) {
-            if (prod.equals(productoABuscar)) {
-                return false; //No se puede añadir algo dos veces
-            }
-        }
-        //No hace falta meterlo en un if ni hacer booleanas, ya que, si ha entrado en el if, ya se sabe que existe en el arraylist y devuelve falso.
-        this.productos_utilizados.add(prod);
-        return true; //Añadido correctamente.
-    }
-    public boolean borrarProductosUsados (Producto prod){
-        Iterator<Producto> iterator = productos_utilizados.iterator();
-        while (iterator.hasNext()){
-            Producto productoBorrar = iterator.next();
-            if (productoBorrar.equals(prod)){
-                iterator.remove();
-                return true; //Borrado correctamente
-            }
-        }
-        return false; //No se puede borrar algo que no existe
-    }
 
     @Override
     public boolean equals(Object o) {
