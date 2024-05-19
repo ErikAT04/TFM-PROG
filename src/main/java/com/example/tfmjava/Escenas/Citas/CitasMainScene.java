@@ -43,7 +43,7 @@ public class CitasMainScene implements Initializable {
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Citas/CitaSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
-        stage.setTitle("HerToq - Creación de Citas");
+        stage.setTitle("ToqHer - Creación de Citas");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
@@ -88,7 +88,7 @@ public class CitasMainScene implements Initializable {
             CitasSubScene controller = loader.getController();
             controller.toEdit(cita);
             Stage stage = new Stage();
-            stage.setTitle("HerToq - Edición de Citas");
+            stage.setTitle("ToqHer - Edición de Citas");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             stage.setScene(scene);

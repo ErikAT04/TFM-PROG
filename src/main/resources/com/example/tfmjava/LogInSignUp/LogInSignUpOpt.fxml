@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="513.0" stylesheets="@../otherSRC/css/mainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tfmjava.Escenas.LogInSignUp.LogSignUp">
    <children>
-      <Label layoutX="56.0" layoutY="46.0" text="Bienvenido a HerToq Manager">
+      <Label layoutX="56.0" layoutY="46.0" text="Bienvenido a ToqHer Manager">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>

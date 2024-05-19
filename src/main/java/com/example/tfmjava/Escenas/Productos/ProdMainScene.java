@@ -44,7 +44,7 @@ public class ProdMainScene implements Initializable {
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Productos/ProductoSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
-        stage.setTitle("HerToq - Creación de Productos");
+        stage.setTitle("ToqHer - Creación de Productos");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
@@ -65,7 +65,7 @@ public class ProdMainScene implements Initializable {
             ProdSubScene controller = loader.getController();
             controller.toEdit(producto);
             Stage stage = new Stage();
-            stage.setTitle("HerToq - Edición de Productos");
+            stage.setTitle("ToqHer - Edición de Productos");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             stage.setScene(scene);
@@ -120,7 +120,7 @@ public class ProdMainScene implements Initializable {
     @FXML
     void stockUp(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Bajada de stock");
+        alert.setTitle("Subida de stock");
         alert.setHeaderText(null);
         Producto producto = tablaProducto.getSelectionModel().getSelectedItem();
         if (producto == null) {

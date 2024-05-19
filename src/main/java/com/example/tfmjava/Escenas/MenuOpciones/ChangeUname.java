@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class ChangeUname {
 
@@ -53,6 +54,8 @@ public class ChangeUname {
                         alert.setContentText("Usuario Actualizado correctamente");
                         alert.setTitle("Usuario Actualizado");
                         alert.setAlertType(Alert.AlertType.INFORMATION);
+                        Stage stage = (Stage) this.unameContador.getScene().getWindow();
+                        stage.close();
                     } else {
                         alert.setContentText("No se ha podido actualizar");
                     }

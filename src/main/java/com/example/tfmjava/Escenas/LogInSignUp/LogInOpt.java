@@ -83,7 +83,7 @@ public class LogInOpt {
 
         Scene scene = new Scene(fxmlLoader.load());
         this.escenario.setScene(scene);
-        escenario.setTitle("HerToq - Menú principal");
+        escenario.setTitle("ToqHer - Menú principal");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         escenario.getIcons().add(img);
         this.escenario.show();

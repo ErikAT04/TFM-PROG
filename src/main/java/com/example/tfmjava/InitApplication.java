@@ -16,7 +16,7 @@ public class InitApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         Image img = new Image(InitApplication.class.getResource("otherSRC/img/favicon.png").toString());
         stage.getIcons().add(img);
-        stage.setTitle("HerToqManager");
+        stage.setTitle("ToqHer Manager");
         stage.setScene(scene);
         stage.show();
     }

@@ -55,7 +55,7 @@ public class LogSignUp {
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         controller.initVariables(escenarioActual); //Esto lo hago para pasar al controlador la escena actual.
-        stage.setTitle("Iniciar Sesión");
+        stage.setTitle("Registrarse");
         stage.setScene(scene);
         stage.showAndWait();
     }

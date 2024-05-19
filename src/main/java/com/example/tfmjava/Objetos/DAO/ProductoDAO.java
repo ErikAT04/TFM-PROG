@@ -20,7 +20,7 @@ public class ProductoDAO {
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setString(1, producto.getNombre());
             sentencia.setString(2, producto.getMarca());
-            sentencia.setInt(2, producto.getStock());
+            sentencia.setInt(3, producto.getStock());
 
             filasInsertadas = sentencia.executeUpdate();
 
@@ -55,7 +55,7 @@ public class ProductoDAO {
     }
     public static int ActualizarProducto(Producto producto){
         int numFilas=0;
-        String sql = "UPDATE PRODUCTO SET stock= ?, nombre = ?, marca = ? WHERE cod_prod = ?) ";
+        String sql = "UPDATE PRODUCTO SET stock= ?, nombre = ?, marca = ? WHERE cod_prod = ?";
         try(Connection con = DataBaseManager.getConnection()){
             PreparedStatement sentencia = con.prepareStatement(sql);
             sentencia.setInt(1, producto.getStock());

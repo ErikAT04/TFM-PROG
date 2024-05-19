@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.sql.DriverManager;
 
@@ -62,6 +63,8 @@ public class ChangePasswd {
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Cambio correcto");
                     DataBaseManager.password=newPass;
+                    Stage stage = (Stage) thisPassTField.getScene().getWindow();
+                    stage.close();
                 }else {
                     alert.setContentText("La contraseña no se ha podido cambiar");
                 }

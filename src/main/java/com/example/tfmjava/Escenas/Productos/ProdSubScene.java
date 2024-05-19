@@ -29,10 +29,10 @@ public class ProdSubScene {
     @FXML
     public void onSendClick(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Error de contenido");
         String accion = (editar)? " editado " : " añadido ";
         if (nombreTF.getText().isEmpty()||marcaTF.getText().isEmpty()||stockTF.getText().isEmpty()){
-            alert.setHeaderText(null);
-            alert.setTitle("Error de contenido");
             alert.setContentText("Alguno de los campos se ha quedado sin rellenar");
             alert.showAndWait();
         } else {
@@ -44,8 +44,9 @@ public class ProdSubScene {
                 if (stock<0){
                     alert.setContentText("No puede haber stock negativo");
                 } else {
-                    Producto producto = new Producto(stock, marca, nombre);
+                    Producto producto = new Producto(stock, nombre, marca);
                     if (editar){
+                        producto.setCod_prod(prevProd.getCod_prod()); //Pasa el código del producto seleccionado
                         numFilasAfec = ProductoDAO.ActualizarProducto(producto);
                     } else {
                         numFilasAfec = ProductoDAO.addProducto(producto);
@@ -84,7 +85,7 @@ public class ProdSubScene {
     @FXML
     void onNombreType(KeyEvent event) {
         String s = nombreTF.getText();
-        if (marcaTF.getText().length() > 40){
+        if (nombreTF.getText().length() > 40){
             s = s.substring(0,40);
         }
         if (s.length()==40){
@@ -92,7 +93,7 @@ public class ProdSubScene {
         }else {
             nombreCaracteres.setTextFill(Color.GREY);
         }
-        marcaCaracteres.setText(s.length() + "/40");
+        nombreCaracteres.setText(s.length() + "/40");
     }
 
     public void toEdit(Producto prod){
@@ -100,5 +101,6 @@ public class ProdSubScene {
         editar = true;
         nombreTF.setText(prod.getNombre());
         marcaTF.setText(prod.getMarca());
+        stockTF.setText(String.valueOf(prod.getStock()));
     }
 }

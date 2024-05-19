@@ -11,11 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainScene implements Initializable {
@@ -55,6 +57,9 @@ public class MainScene implements Initializable {
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Opciones/OptMenu.fxml"));
             Scene scene = new Scene(loader.load());
             newStage.setScene(scene);
+            newStage.setTitle("ToqHer - Ajustes");
+            Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
+            newStage.getIcons().add(img);
             Stage thisStage = (Stage) this.welcomeLabel.getScene().getWindow(); //Lo utilizaré si cierro sesión en las opciones o borro la cuenta.
             MainOptionMenu controller = loader.getController();
             controller.addStageValue(thisStage, newStage);

@@ -100,6 +100,7 @@ public class TratSubScene implements Initializable {
         alert.showAndWait();
     }
     void toEdit(Tratamiento trat){
+        sendBtt.setText("Editar");
         edit=true;
         this.prevTratamiento = trat;
         descTextArea.setText(trat.getDescripcion());

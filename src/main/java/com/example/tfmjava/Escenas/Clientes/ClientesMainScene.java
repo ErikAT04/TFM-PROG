@@ -42,7 +42,7 @@ public class ClientesMainScene implements Initializable {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));
         Scene scene = new Scene(loader.load());
-        stage.setTitle("HerToq - Creación de Clientes");
+        stage.setTitle("ToqHer - Creación de Clientes");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
@@ -60,7 +60,7 @@ public class ClientesMainScene implements Initializable {
             alert.showAndWait();
         }else {
             Stage stage = new Stage();
-            stage.setTitle("HerToq - Edición de Clientes");
+            stage.setTitle("ToqHer - Edición de Clientes");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Clientes/ClientesSubMain.fxml"));

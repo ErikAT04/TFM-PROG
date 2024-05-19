@@ -57,7 +57,7 @@ public class TratMainScene implements Initializable {
     @FXML
     void onTratamientoAddClick(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        stage.setTitle("HerToq - Creación de Tratamientos");
+        stage.setTitle("ToqHer - Creación de Tratamientos");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));
@@ -104,7 +104,7 @@ public class TratMainScene implements Initializable {
             alert.showAndWait();
         } else {
             Stage stage = new Stage();
-            stage.setTitle("HerToq - Edición de Tratamientos");
+            stage.setTitle("ToqHer - Edición de Tratamientos");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Tratamientos/TratamientosSubMain.fxml"));

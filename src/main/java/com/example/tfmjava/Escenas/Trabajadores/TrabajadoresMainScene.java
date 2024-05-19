@@ -58,7 +58,7 @@ public class TrabajadoresMainScene implements Initializable {
         FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Trabajadores/TrabajadoresSubMain.fxml"));
         Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
-        stage.setTitle("HerToq - Creación de trabajadores");
+        stage.setTitle("ToqHer - Creación de trabajadores");
         Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
         stage.getIcons().add(img);
         stage.setScene(scene);
@@ -98,7 +98,7 @@ public class TrabajadoresMainScene implements Initializable {
             TrabajadoresSubScene controller = loader.getController();
             controller.toEdit(trabajador);
             Stage stage = new Stage();
-            stage.setTitle("HerToq - Edición de Trabajadores");
+            stage.setTitle("ToqHer - Edición de Trabajadores");
             Image img = new Image(Objects.requireNonNull(InitApplication.class.getResource("otherSRC/img/favicon.png")).toString());
             stage.getIcons().add(img);
             stage.setScene(scene);
