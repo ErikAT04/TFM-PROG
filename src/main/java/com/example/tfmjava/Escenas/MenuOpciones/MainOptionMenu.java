@@ -63,7 +63,11 @@ public class MainOptionMenu {
             alert.setContentText("¡Hasta la vista!");
             alert.showAndWait();
             returnToBeginning();
-        } else {
+        } else if (resultado.get() != ButtonType.OK) {
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Acción finalizada");
+            alert.showAndWait();
+        }else {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Ha habido un problema");
             alert.showAndWait();
