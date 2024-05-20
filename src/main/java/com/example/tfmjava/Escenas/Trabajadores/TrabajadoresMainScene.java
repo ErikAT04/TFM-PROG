@@ -70,17 +70,18 @@ public class TrabajadoresMainScene implements Initializable {
     void onTrabajadorDelClick(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Borrar trabajador");
+        alert.setHeaderText(null);
         Trabajador trabajador = tablaTrabajador.getSelectionModel().getSelectedItem();
         if (trabajador == null) {
-            System.out.println("Selecciona algún trabajador para continuar");
-            alert.showAndWait();
+            alert.setContentText("Selecciona algún trabajador para continuar");
         } else {
-            FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Trabajadores/TrabajadoresSubMain.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.showAndWait();
+            int numfilas = TrabajadorDAO.borrarTrabajador(trabajador.getCod_trabajador());
+            if (numfilas==1){
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("Trabajador borrado correctamente");
+            }
         }
+        alert.showAndWait();
         refreshTable();
     }
 
@@ -88,9 +89,10 @@ public class TrabajadoresMainScene implements Initializable {
     void onTrabajadorEditClick(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Editar trabajador");
+        alert.setHeaderText(null);
         Trabajador trabajador = tablaTrabajador.getSelectionModel().getSelectedItem();
         if (trabajador == null) {
-            System.out.println("Seleccione algún trabajador");
+            alert.setContentText("Seleccione algún trabajador");
             alert.showAndWait();
         } else {
             FXMLLoader loader = new FXMLLoader(InitApplication.class.getResource("Trabajadores/TrabajadoresSubMain.fxml"));
