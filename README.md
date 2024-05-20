@@ -74,17 +74,3 @@
 <ul>
     <li>He tenido que cambiar los Statement Preparados de la creación del usuario al registrarse porque daban fallos, así que me he asegurado de que sea impenetrable (Erik, 13/05/2024)</li>
 </ul>
-
-<!--
-DIARIO DE CAGADAS DE ERIK:
-1. EL REGISTER NO FUNCA PORQUE PATATAS
-   Solucionado (gracias a dios) haciendo que la conexión no vaya ligada directamente a una base de datos
-2. EL REGISTER AHORA DA PROBLEMAS AL INTENTAR HACER LA BASE DE DATOS AAAAAAAAAA
-   Solucionado cambiando de una sentencia preparada a una sentencia normal
-3. EL REGISTER AHORA DA PROBLEMAS AL INTENTAR DAR PERMISOS
-   SOY PUTO LELO Y NO ME FIJE EN QUE ESTABA USANDO OTRO STATEMENT DIFERENTE
-4. El login HA DEJADO DE IR POR LA PUTA CARA
-   Ha sido que por algún motivo a intelliJ no le apetecía cargar el driverManager
-5. EL LOGIN NO FUNCIONA (un dia mas)
-   Solución: Soy memo y he puesto que la contraseña a la hora de registrarse salga del textField del nombre de usuario
--->

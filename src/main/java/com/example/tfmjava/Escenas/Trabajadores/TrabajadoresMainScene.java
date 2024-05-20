@@ -105,6 +105,7 @@ public class TrabajadoresMainScene implements Initializable {
             stage.showAndWait();
 
         }
+        refreshTable();
     }
 
     @Override

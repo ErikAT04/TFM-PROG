@@ -65,7 +65,7 @@ public class TrabajadoresSubScene implements Initializable {
             for (String s : diasHorario) {
                 horario = horario + s + ", ";
             }
-            horario = horario.substring(0, horario.length() - 3);
+            horario = horario.substring(0, horario.length() - 2);
             if (op) {
                 int numFilas = 0;
                 Trabajador trabajador = new Trabajador(dni, nombre, apellido, codT, horario);

@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="TFMJava">
+    <output-path>$PROJECT_DIR$/out/artifacts/TFMJava</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.example.tfmjava.InitApplication" />
+        <option name="description" value="Aplicacion del proyecto personas de JavaFX" />
+        <option name="height" value="-Infinity" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="exe" />
+        <option name="title" value="ToqHer Manager" />
+        <option name="vendor" value="ErikAT &amp; IvanHG" />
+        <option name="version" value="1.0" />
+        <option name="width" value="-Infinity" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="TFMJava.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="TFMJava" />
+      </element>
+    </root>
+  </artifact>
+</component>
